@@ -1,0 +1,6 @@
+DROP TABLE IF EXISTS favourites CASCADE;
+CREATE TABLE favourites (
+  id SERIAL PRIMARY KEY NOT NULL,
+  user_id REFERENCES users.id NOT NULL,
+  item_id REFERENCES items.id NOT NULL
+);

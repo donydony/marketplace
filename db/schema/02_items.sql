@@ -5,5 +5,8 @@ CREATE TABLE items (
   title VARCHAR(255) NOT NULL,
   img_url TEXT NOT NULL,
   price INTEGER NOT NULL,
-  description TEXT
+  type VARCHAR(30),
+  description TEXT,
+  date_added: TIMESTAMP NOT NULL,
+  sold_status BOOLEAN NOT NULL
 );
