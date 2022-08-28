@@ -1,4 +1,5 @@
 @import 'mixins';
+@import 'variables';
 
 main {
   height: 2000px;
@@ -9,12 +10,18 @@ main {
     button {
       margin-top: 100px;
       width: 60%;
+      outline: none;
+      background-color: $danger;
+      border-color: $success;
+      border-radius: .3rem;
     }
 
     section {
-
-      border: 1px solid black;
+      margin: 1em;
+      padding: 1em;
       width: 40%;
+      border: 1px solid black;
+
       form {
         @include flex($c:space-around);
 
@@ -29,7 +36,7 @@ main {
 
         .sort-by {
           @include flex($d: column,$c: flex-start, $i:flex-end);
-          
+
 
           span {
             align-self: center;
