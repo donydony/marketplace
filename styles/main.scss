@@ -2,17 +2,46 @@
 
 main {
   height: 2000px;
-  @include flex($c: center);
 
   aside {
+    @include flex($d: column, $c: center,$i:center);
     text-align: center;
     button {
       margin-top: 100px;
       width: 60%;
     }
+
+    section {
+
+      border: 1px solid black;
+      width: 40%;
+      form {
+        @include flex($c:space-around);
+
+        .filter-by {
+          @include flex($d: column, $c: flex-start,$i: flex-end);
+
+          span {
+            align-self: center;
+            margin: 1em;
+          }
+        }
+
+        .sort-by {
+          @include flex($d: column,$c: flex-start, $i:flex-end);
+          
+
+          span {
+            align-self: center;
+            margin: 1em;
+          }
+        }
+      }
+    }
   }
 
   .items-section {
-    @include flex($d: column, $c: center);
+    @include flex($d: column, $c: center,$i:center);
+    margin-top: 1em;
   }
 }

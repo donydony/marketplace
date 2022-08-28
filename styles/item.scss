@@ -3,6 +3,9 @@
 .item {
   @include flex($c: space-between);
   border: 2px solid black;
+  border-radius: 25px;
+  width: 80%;
+  margin: 1em;
 
   .sub-sect1 {
     @include flex($d: column, $i:center);
@@ -31,8 +34,8 @@
   }
 
   .sub-sect3 {
-    @include flex($d: column,$c:flex-end , $i:center);
-    color: yellow;
+    @include flex($d: column,$c:space-between , $i:center);
+
     margin: 1em;
   }
 }
