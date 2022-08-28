@@ -13,7 +13,7 @@ let maxUserID = function () {
   return pool
     .query(`SELECT MAX(id) FROM users`)
     .then(data => {
-      return data.rows[0].max;
+      return Math.ceil(Math.random()*data.rows[0].max);//cannot have id of 0 hence Math.ceil()
     })
 };
 
