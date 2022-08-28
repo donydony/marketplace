@@ -11,7 +11,7 @@ const pool = new Pool ({
 
 const addUser =  function() {
   let username = faker.internet.userName();
-  let password = faker.internet.password();
+  let password = 'password'
   let admin = Math.random() < 0.5;
   let user_pic = faker.internet.avatar();
   let first_name = faker.name.firstName();

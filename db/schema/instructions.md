@@ -1,4 +1,4 @@
-# This folder is for creating the tables for the databases
+# This folder is for creating the tables for the databases (also RESETS tables on repeated use)
 
 ## Instructions
 
