@@ -21,7 +21,7 @@ For example to create 5 users in the Users Table (Table 1):
 node 01_users_random_seeds.js 5
 ```
 
-- True can be added to the end of the command to console.log the newly created objects for viewing
+- True can be added to the end of the command to console.log the newly created objects for viewing; false or null can be also be used and are the default
 ```
 node 01_users_random_seeds.js 5 true
 
@@ -38,6 +38,16 @@ node 01_users_random_seeds.js 5 true
 }
 
 ```
+
+
+- Furthermore, for the messages table, conversation id and sender id can be specified to force creation of messages for a specific conversation(process.argv[5]) by a specific sender(process.argv[4]) BUT true/false must be used at process.argv[3]:
+
+```
+node 05_msgs_random_seeds 5 false 1 6 
+
+```
+
+The above example has a sender_id of 1 and a conversation_id of 6. You can still apply the specific conversation 
 
 #### NOTE: all randomly generated users current have a password of 'password' which is hashed; this is only for ease of testing and new users on the actual app are allowed to set an unique password(provided they can remember it as it is not stored in the database!!)
 
