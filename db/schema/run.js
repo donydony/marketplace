@@ -56,35 +56,29 @@ let msgRead = new Promise ((res, rej) => {
   })
 });
 
+let all = "";
 
 userRead.then(element => {
-  pool.query(element);
+  return all += element;
+}).then(all => {
+  return itemsRead.then(element => {
+    return all += element;
+  })
+}).then(all => {
+  return favRead.then(element => {
+    return all += element;
+  })
+}).then(all => {
+  return convoRead.then(element => {
+    return all += element;
+  })
+}).then(all => {
+  return msgRead.then(element => {
+    return all += element;
+  })
+}).then(all => {
+  pool.query(all);
 }).catch(err => {
   console.error(err);
 });
 
-itemsRead.then(element => {
-  pool.query(element);
-}).catch(err => {
-  console.error(err);
-});
-
-favRead.then(element => {
-  pool.query(element);
-}).catch(err => {
-  console.error(err);
-});
-
-
-convoRead.then(element => {
-  pool.query(element);
-}).catch(err => {
-  console.error(err);
-});
-
-
-msgRead.then(element => {
-  pool.query(element);
-}).catch(err => {
-  console.error(err);
-});
