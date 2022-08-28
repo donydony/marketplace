@@ -2,6 +2,9 @@
 
 ## Instructions
 
+### Make sure to check that your .env file is configured properly!!
+
+
 - Choose either instructions
 
 VERSION 1 : Log into your local database using the following format:

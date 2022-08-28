@@ -1,6 +1,10 @@
 require('dotenv').config({path:'../../.env'});
 const {Pool} = require('pg');
 const { faker } = require('@faker-js/faker');
+const bcrypt = require('bcryptjs');
+
+
+const salt = bcrypt.genSaltSync(10);
 
 const pool = new Pool ({
   user: process.env.DB_USER,
@@ -9,9 +13,9 @@ const pool = new Pool ({
   database: process.env.DB_NAME
 });
 
-const addUser =  function() {
+const addUser =  function(boolean) {
   let username = faker.internet.userName();
-  let password = 'password'
+  let password = bcrypt.hashSync('password', salt);
   let admin = Math.random() < 0.5;
   let user_pic = faker.internet.avatar();
   let first_name = faker.name.firstName();
@@ -30,15 +34,18 @@ const addUser =  function() {
       address,
       description) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`, values, (err, res) => {
         if (err) {
-          console.log(err.stack);
+          return console.log(err.stack);
         }
-        console.log(res.rows[0]); ///mostly for debug
+        if(boolean){
+          return console.log(res.rows[0]); ///mostly for debug
+        }
+        return;
       })
 };
 
-let addNUsers = function(times) {
+let addNUsers = function(times, boolean) {
   for (let i = 0; i < times; i ++){
-    addUser();
+    addUser(boolean);
   }
 };
 
