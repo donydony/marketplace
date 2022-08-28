@@ -1,0 +1,30 @@
+@import 'mixins';
+@import 'variables';
+
+header{
+
+
+
+  nav{
+    @include flex($c: space-between, $i: center);
+    height: 100px;
+    position:fixed;
+    background-color: royalblue;
+    width:100%;
+    a {
+      margin: 1em;
+      font-family: $nav-font;
+      font-weight: bold;
+      font-size: 24px;
+      text-decoration: none;
+      color: white;
+
+    }
+
+    .user-name {
+      color: black;
+    }
+  }
+
+}
+

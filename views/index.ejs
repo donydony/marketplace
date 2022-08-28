@@ -8,17 +8,85 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <meta name="viewport" content="width=device-width, initial-scale=1.0" >
 
+<!-- FONT AWESOME LINK -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<!--
+****************************************************************************
+  EXTERNAL STYLE SHEETS
+******************************************************************************-->
+  <!-- LAYOUT CSS CSS-->
+  <link rel="stylesheet" href="/styles/layout.css" />
+  <!-- MAIN CSS-->
+  <link rel="stylesheet" href="/styles/main.css" />
+  <!-- HEADER CSS-->
+  <link rel="stylesheet" href="/styles/header.css" />
+  <!-- ITEM CSS-->
+  <link rel="stylesheet" href="/styles/item.css" />
+
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
   <link rel="stylesheet" href="/vendor/border-box.css" />
-  <link rel="stylesheet" href="/styles/main.css" />
-  <link rel="stylesheet" href="/styles/layout.css" />
 
+<!--
+****************************************************************************
+  JS SCRIPTS
+******************************************************************************-->
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/app.js"></script>
 </head>
-
+<!-- BODY -->
 <body>
-  <h1>Have fun! 🥔</h1>
+  <header>
+    <%- include('partials/_header') %>
+  </header>
+
+  <!-- MAIN CONTENT HERE -->
+  <main>
+    <!-- THE FILTER SECTION -->
+    <aside class="filter">
+      <button class="filter-btn">Filter By</button>
+    </aside>
+
+    <!-- ITEMS ARE DISPLAYED HERE-->
+    <section class="items-section">
+
+
+      <!-- ITEM 1 -->
+      <article class="item">
+
+        <section class="sub-sect1">
+          <div class="seller-info">
+            <img src="" alt="SELLER AVATAR">
+            <h5> SELLER NAME</h5>
+          </div>
+
+          <div class="item-img">
+            <img src="" alt="ITEM IMG">
+          </div>
+
+        </section>
+
+        <section class="sub-sect2">
+
+            <h5>
+              <span>ITEM TITLE</span>
+            </h5>
+            <span>$PRICE</span>
+            <textarea name="item-description" class="item-description" cols="30" rows="6"></textarea>
+
+        </section>
+
+        <section class="sub-sect3">
+          <i class="fa-solid fa-star"></i>
+          <button>Message Seller</button>
+        </section>
+
+      </article>
+
+    </section>
+
+  </main>
+
 </body>
 
 </html>
