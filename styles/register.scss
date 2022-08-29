@@ -1,0 +1,19 @@
+@import 'mixins';
+@import 'variables';
+
+.register-section {
+  @include flex($d: column, $c: center, $i: center);
+  margin-top: 110px;
+
+  h2 {
+    font-size: 25px;
+  }
+
+  .register-submit {
+    width: 100%;
+    border: 2px solid black;
+    border-radius: $btn-round;
+    background-color: royalblue;
+    color: white
+  }
+}
