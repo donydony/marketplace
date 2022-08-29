@@ -7,4 +7,9 @@ const getUsers = () => {
     });
 };
 
+const newUser = () => {
+  
+  return db.query
+}
+
 module.exports = { getUsers };
