@@ -3,11 +3,10 @@
 
 header{
 
-
-
   nav{
     @include flex($c: space-between, $i: center);
     height: 100px;
+    top: 0;
     position:fixed;
     background-color: royalblue;
     width:100%;

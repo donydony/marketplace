@@ -1,5 +1,10 @@
 @import 'mixins';
 
+.items-section {
+  @include flex($d: column, $c: center,$i:center);
+  margin-top: 1em;
+}
+
 .item {
   @include flex($c: space-between);
   border: 2px solid black;
