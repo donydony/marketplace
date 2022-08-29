@@ -35,8 +35,8 @@ const userFavRoutes = require('./routes/user-fav');
 const messagesRoutes = require('./routes/messages');
 const loginRoutes = require('./routes/login');
 const postItemRoutes = require('./routes/post-item');
-const register = require('./routes/register');
-const inbox = require('./routes/inbox');
+const registerRoutes = require('./routes/register');
+const inboxRoutes = require('./routes/inbox');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -45,7 +45,11 @@ app.use('/api/users', userApiRoutes);
 app.use('/api/widgets', widgetApiRoutes);
 app.use('/user', userRoutes);
 app.use('/user/fav',userFavRoutes);
-app.use('messages',messagesRoutes);
+app.use('/messages', messagesRoutes);
+app.use('/login',loginRoutes);
+app.use('/post-item',postItemRoutes);
+app.use('/register',registerRoutes);
+app.use('/inbox',inboxRoutes);
 // Note: mount other resources here, using the same pattern above
 
 // Home page

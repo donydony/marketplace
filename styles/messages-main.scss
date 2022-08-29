@@ -1,0 +1,41 @@
+@import 'variables';
+@import 'mixins';
+
+main {
+
+  .messages-section {
+    @include flex($d: column, $i: center);
+
+    .messages-box {
+      margin-top: 110px;
+      height: 70vh;
+      width: 70%;
+      border: 3px solid black;
+      border-radius: 25px;
+    }
+
+    .new-message-form {
+      @include flex($c: center);
+      width: 70%;
+      height: 7vh;
+      margin-top: 1em;
+      border: 2px solid black;
+
+      .new-message {
+        width: 85%;
+        height: 100%;
+        margin-right: 0;
+      }
+
+      .submit {
+        width: 15%;
+        border-radius: 0;
+        border: $btn-round;
+        margin: 0;
+        font-size: large;
+        background-color: royalblue;
+        color: white
+      }
+    }
+  }
+}

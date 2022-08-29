@@ -1,49 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>User Favourites Page</title>
+    <title>Messages</title>
 
     <meta charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge" >
     <meta name="viewport" content="width=device-width, initial-scale=1.0" >
 
-  <!-- FONT AWESOME LINK -->
+<!--
+  ****************************************************************************
+    EXTERNAL RESOURCES
+  ******************************************************************************-->
+
+<!-- FONT AWESOME LINK -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <!--
-  ****************************************************************************
-    EXTERNAL STYLE SHEETS
-  ******************************************************************************-->
-    <!-- LAYOUT CSS CSS-->
-    <link rel="stylesheet" href="/styles/layout.css" />
-    <!-- MAIN CSS-->
-    <link rel="stylesheet" href="/styles/user-fav-main.css" />
-    <!-- HEADER CSS-->
-    <link rel="stylesheet" href="/styles/header.css" />
-    <!-- ITEM CSS-->
-    <link rel="stylesheet" href="/styles/item.css" />
+<!--
+****************************************************************************
+  EXTERNAL STYLE SHEETS
+******************************************************************************-->
+  <!-- LAYOUT CSS CSS-->
+  <link rel="stylesheet" href="/styles/layout.css" />
+  <!-- MAIN CSS-->
+  <link rel="stylesheet" href="/styles/messages-main.css" />
+  <!-- HEADER CSS-->
+  <link rel="stylesheet" href="/styles/header.css" />
+  <!-- ITEM CSS-->
+  <link rel="stylesheet" href="/styles/item.css" />
 
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" />
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" />
 
-  <!--
-  ****************************************************************************
-    JS SCRIPTS
-  ******************************************************************************-->
-    <script src="/vendor/jquery-3.0.0.js"></script>
-    <script defer src="/scripts/app.js"></script>
+<!--
+****************************************************************************
+  JS SCRIPTS
+******************************************************************************-->
+  <script src="/vendor/jquery-3.0.0.js"></script>
+  <script defer src="/scripts/app.js"></script>
+
   </head>
+
 <body>
   <header>
      <%- include('partials/_header') %>
   </header>
   <main>
 
-    <textarea name="message-box" class="msg-box" cols="90" rows="10"></textarea>
+    <section class="messages-section">
+      <section class="messages-box"></section>
+
+      <form class="new-message-form" method="post" action="">
+        <input
+              class="new-message"
+              type="new-message"
+              name="new-message"
+              placeholder="Enter new message"
+              style="margin-bottom: 1em"
+        />
+        <button class="submit btn btn-primary">Submit</button>
+      </form>
+    </section>
+
 
 
 
   </main>
 
+
+
+
 </body>
+
+
 </html>
