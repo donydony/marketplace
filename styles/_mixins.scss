@@ -1,0 +1,11 @@
+@mixin flex-short($direction: column) {
+  display:flex;
+  flex-direction: $direction;
+}
+
+@mixin flex($display:flex, $d:row, $c:flex-start, $i:stretch) {
+  display: $display;
+  flex-direction: $d;
+  justify-content: $c;
+  align-items: $i;
+}

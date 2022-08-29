@@ -1,0 +1,13 @@
+@import 'variables';
+@import 'mixins';
+
+.your-items{
+  @include flex($d: column, $i: center);
+  margin-top: 110px;
+
+  .latest-message {
+    border: 2px solid black;
+    border-radius: $btn-round;
+    width: 70%;
+  }
+ }

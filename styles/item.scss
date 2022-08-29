@@ -1,0 +1,48 @@
+@import 'mixins';
+
+.items-section {
+  @include flex($d: column, $c: center,$i:center);
+  margin-top: 1em;
+}
+
+.item {
+  @include flex($c: space-between);
+  border: 2px solid black;
+  border-radius: 25px;
+  width: 80%;
+  margin: 1em;
+
+  .sub-sect1 {
+    @include flex($d: column, $i:center);
+
+    .seller-info {
+      @include flex($i: center);
+
+      img {
+        margin:1em;
+        background-color: gray;
+        height:60px;
+        width: 60px;
+      }
+    }
+
+    .item-img{
+      background-color: gray;
+      height:100px;
+      width: 100px;
+      text-align: center;
+    }
+  }
+
+  .sub-sect2 {
+    @include flex($d: column,$c:center, $i:center);
+  }
+
+  .sub-sect3 {
+    @include flex($d: column,$c:space-between , $i:center);
+
+    margin: 1em;
+  }
+}
+
+

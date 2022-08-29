@@ -1,0 +1,47 @@
+@import 'variables';
+@import 'mixins';
+
+.your-items {
+  @include flex($d: column, $c: center, $i: center);
+  margin-top: 110px;
+
+  .profile {
+    @include flex($c: space-between,$i: center);
+    width: 60%;
+    img {
+      background-color: gray;
+      height: 200px;
+      width: 200px;
+      text-align: center;
+    }
+
+    div {
+      @include flex($d: column, $i: center);
+
+      article {
+        width: 500px;
+        height: 10vh;
+        border: 1px solid;
+      }
+    }
+  }
+
+  .listing {
+    @include flex($d: column, $i: center);
+    width: 70%;
+    div {
+      @include flex($c: center);
+
+      .delete {
+        border: 2px solid black;
+        border-radius: $btn-round;
+        background-color: red;
+      }
+      .sold {
+        border: 2px solid black;
+        border-radius: $btn-round;
+        background-color: greenyellow;
+      }
+    }
+  }
+}
