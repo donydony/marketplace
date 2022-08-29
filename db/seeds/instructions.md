@@ -18,7 +18,7 @@ npm install bcryptjs
 
 For example to create 5 users in the Users Table (Table 1):
 ```
-node 01_users_random_seeds.js 5
+node PATH_to_MAIN_FOLDER(ie marketplace)/01_users_random_seeds.js 5
 ```
 
 - True can be added to the end of the command to console.log the newly created objects for viewing; false or null can be also be used and are the default
