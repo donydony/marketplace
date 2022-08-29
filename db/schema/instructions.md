@@ -19,7 +19,8 @@ VERSION 1 : Log into your local database using the following format:
 
 VERSION 2 : run the 'run.js' file using node (NOTE: extremely slow since it runs many ASYNC operations back to back) eg:
 ```
-node ./db/schema/run.js
+cd RELATIVE-PATH/schema/
+node run.js
 ```
 
 
