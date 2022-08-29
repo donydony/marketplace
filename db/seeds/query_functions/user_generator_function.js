@@ -1,4 +1,4 @@
-require('dotenv').config({path:'../../.env'});
+require('dotenv').config();
 const {Pool} = require('pg');
 const { faker } = require('@faker-js/faker');
 const bcrypt = require('bcryptjs');

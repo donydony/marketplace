@@ -1,4 +1,4 @@
-require('dotenv').config({path:'../../.env'});
+require('dotenv').config();
 const {Pool} = require('pg');
 const { faker } = require('@faker-js/faker');
 
@@ -20,7 +20,7 @@ let maxUserID = function () {
 const addItems =  function(boolean, seller) {
   let title = faker.vehicle.model();
   let imgUrl = faker.image.transport();
-  let price = Number(faker.finance.amount())*100;
+  let price = Math.floor(Number(faker.finance.amount())*100);
   let type = faker.vehicle.type();
   let description = faker.lorem.lines();
   let date =  faker.date.recent();
