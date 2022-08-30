@@ -1,4 +1,4 @@
-require('dotenv').config({ path: '../../.env' });
+require('dotenv').config();
 const {Pool} = require('pg');
 const fs = require('fs');
 
@@ -10,7 +10,7 @@ const pool = new Pool ({
 });
 
 let userRead = new Promise ((res, rej) => {
-  fs.readFile('./table_creation_queries/01_users.sql', 'utf8', (err, data) => {
+  fs.readFile('./db/schema/table_creation_queries/01_users.sql', 'utf8', (err, data) => {
     if (err) {
       return rej(err);
     }
@@ -20,7 +20,7 @@ let userRead = new Promise ((res, rej) => {
 });
 
 let itemsRead = new Promise ((res, rej) => {
-  fs.readFile('./table_creation_queries/02_items.sql', 'utf8', (err, data) => {
+  fs.readFile('./db/schema/table_creation_queries/02_items.sql', 'utf8', (err, data) => {
     if (err) {
       return rej (err);
     }
@@ -30,7 +30,7 @@ let itemsRead = new Promise ((res, rej) => {
 });
 
 let favRead = new Promise ((res, rej) => {
-  fs.readFile('./table_creation_queries/03_favourites.sql', 'utf8', (err, data) => {
+  fs.readFile('./db/schema/table_creation_queries/03_favourites.sql', 'utf8', (err, data) => {
     if (err) {
       return rej (err);
     }
@@ -41,7 +41,7 @@ let favRead = new Promise ((res, rej) => {
 
 
 let convoRead = new Promise ((res, rej) => {
-  fs.readFile('./table_creation_queries/04_conversations.sql', 'utf8', (err, data) => {
+  fs.readFile('./db/schema/table_creation_queries/04_conversations.sql', 'utf8', (err, data) => {
     if (err) {
       return rej (err);
     }
@@ -52,7 +52,7 @@ let convoRead = new Promise ((res, rej) => {
 
 
 let msgRead = new Promise ((res, rej) => {
-  fs.readFile('./table_creation_queries/05_messages.sql', 'utf8', (err, data) => {
+  fs.readFile('./db/schema/table_creation_queries/05_messages.sql', 'utf8', (err, data) => {
     if (err) {
       return rej (err);
     }
