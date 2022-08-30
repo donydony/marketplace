@@ -27,10 +27,6 @@ app.use(
 app.use(express.static('public'));
 
 
-//imported query data
-const {
-  featuredData
-} = require("./db/queries/main.js");
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
@@ -63,8 +59,20 @@ app.use('/inbox',inboxRoutes);
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
+
+
+//imported query data
+const {
+  featuredData
+} = require("./db/queries/main.js");
+
 app.get('/', (req, res) => {
-  res.render('index', templateVars);
+  res.render('index');
+});
+app.post('/', (req, res) => {
+  featuredData(1).then(data => {
+    return res.json(data);
+  })
 });
 
 app.listen(PORT, () => {
