@@ -10,12 +10,14 @@ const router  = express.Router();
 
 //imported query data
 const {
-  featuredData, newData, userData, priceData, priceDataDesc, priceRangeData, priceRangeDataDesc
+  featuredData, newData, filterData, priceData, priceDataDesc
 } = require("../db/queries/main.js");
 
 router.get('/', (req, res) => {
   res.render('index');
 });
+
+//buttons
 router.post('/featured', (req, res) => {
   featuredData(1).then(data => {
     return res.json(data);
@@ -29,11 +31,6 @@ router.post('/new', (req, res) => {
   })
 });
 
-router.post('/user', (req, res) => {
-  userData(1).then(data => {
-    return res.json(data);
-  })
-});
 
 router.post('/price', (req, res) => {
   priceData(1).then(data => {
@@ -47,17 +44,12 @@ router.post('/pricedesc', (req, res) => {
   })
 });
 
-router.post('/pricerange', (req, res) => {
-  priceRangeData(1).then(data => {
+
+//filter
+router.post('/filter', (req, res) => {
+  let filter = req.body.filter_by;
+  filterData(1, filter[0], filter[1], filter[2], filter[3]).then(data => {
     return res.json(data);
   })
 });
-
-
-router.post('/pricerangedesc', (req, res) => {
-  priceRangeDataDesc(1).then(data => {
-    return res.json(data);
-  })
-});
-
 module.exports = router;

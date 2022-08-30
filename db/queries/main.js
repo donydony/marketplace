@@ -14,9 +14,6 @@ let featuredData = function (pageNumber) {
       return data.rows;
     })
 };
-// featuredData(1).then(data => {
-//   console.log(data);
-// });
 
 let newData = function (pageNumber) {
   let pageRange = (pageNumber - 1)*10;
@@ -25,24 +22,12 @@ let newData = function (pageNumber) {
     FROM items
     JOIN users ON items.seller_id = users.id
     LEFT JOIN favourites ON favourites.user_id = users.id
-    ORDER BY date_added DESC OFFSET $1 LIMIT 10`, [pageRange])
+    ORDER BY date_added DESC LIMIT 10 OFFSET $1`, [pageRange])
     .then(data => {
       return data.rows;
     })
 };
 
-let userData = function (pageNumber, name) {
-  let pageRange = (pageNumber - 1)*10;
-  return db
-    .query(`SELECT img_url, price, title, items.description AS item_description, users.user_pic, users.username, favourites.id AS favourites_id
-    FROM items
-    JOIN users ON items.seller_id = users.id
-    LEFT JOIN favourites ON favourites.user_id = users.id
-    ORDER BY $1 OFFSET $2 LIMIT 10`, [name, pageRange])
-    .then(data => {
-      return data.rows;
-    })
-};
 let priceData = function (pageNumber) {
   let pageRange = (pageNumber - 1)*10;
   return db
@@ -50,51 +35,58 @@ let priceData = function (pageNumber) {
     FROM items
     JOIN users ON items.seller_id = users.id
     LEFT JOIN favourites ON favourites.user_id = users.id
-    ORDER BY price OFFSET $1 LIMIT 10`, [pageRange])
+    ORDER BY price LIMIT 10 OFFSET $1`, [pageRange])
     .then(data => {
       return data.rows;
     })
-};
+  };
 
-let priceDataDesc = function (pageNumber) {
+  let priceDataDesc = function (pageNumber) {
   let pageRange = (pageNumber - 1)*10;
   return db
-    .query(`SELECT img_url, price, title, items.description AS item_description, users.user_pic, users.username, favourites.id AS favourites_id
-    FROM items
-    JOIN users ON items.seller_id = users.id
-    LEFT JOIN favourites ON favourites.user_id = users.id
-    ORDER BY price DESC OFFSET $1 LIMIT 10`, [pageRange])
-    .then(data => {
-      return data.rows;
-    })
+  .query(`SELECT img_url, price, title, items.description AS item_description, users.user_pic, users.username, favourites.id AS favourites_id
+  FROM items
+  JOIN users ON items.seller_id = users.id
+  LEFT JOIN favourites ON favourites.user_id = users.id
+  ORDER BY price DESC LIMIT 10 OFFSET $1`, [pageRange])
+  .then(data => {
+    return data.rows;
+  })
 };
 
-let priceRangeData = function (pageNumber, min, max) {
+let filterData = function (pageNumber, name, min, max, boolean) {
   let pageRange = (pageNumber - 1)*10;
+  let realMin = min * 100;
+  let realMax = max * 100;
+  let queryString = `SELECT img_url, price, title, items.description AS item_description, users.user_pic, users.username, favourites.id AS favourites_id
+  FROM items
+  JOIN users ON items.seller_id = users.id
+  LEFT JOIN favourites ON favourites.user_id = users.id
+  `;
+  let parameters = [];
+  if (name) {
+    parameters.push(`username LIKE '%${name}%'`);
+  }
+  if(min) {
+    parameters.push(`price >= ${realMin}`);
+  }
+  if (max) {
+    parameters.push(`price <= ${realMax}`);
+  }
+  if (parameters.length > 0) {
+    queryString = queryString + "WHERE " + parameters.join(" AND ");
+  }
+  queryString += " ORDER BY price"
+  if (boolean) {
+    queryString += " DESC";
+  }
+  queryString += ` LIMIT 10 OFFSET ${pageRange}`;
+  console.log (queryString);
   return db
-    .query(`SELECT img_url, price, title, items.description AS item_description, users.user_pic, users.username, favourites.id AS favourites_id
-    FROM items
-    JOIN users ON items.seller_id = users.id
-    LEFT JOIN favourites ON favourites.user_id = users.id
-    WHERE price BETWEEN $1 AND $2 ORDER BY price OFFSET $3 LIMIT 10`, [min, max, pageRange])
+    .query(queryString)
     .then(data => {
       return data.rows;
     })
 };
 
-let priceRangeDataDesc = function (pageNumber, min, max) {
-  let pageRange = (pageNumber - 1)*10;
-  return db
-    .query(`
-    SELECT img_url, price, title, items.description AS item_description, users.user_pic, users.username, favourites.id AS favourites_id
-    FROM items
-    JOIN users ON items.seller_id = users.id
-    LEFT JOIN favourites ON favourites.user_id = users.id
-    WHERE price BETWEEN $1 AND $2 ORDER BY price DESC OFFSET $3 LIMIT 10`, [min, max, pageRange])
-    .then(data => {
-      return data.rows;
-    })
-};
-
-
-module.exports = {featuredData, newData, userData, priceData, priceDataDesc, priceRangeData, priceRangeDataDesc};
+  module.exports = {featuredData, newData, filterData, priceData, priceDataDesc};

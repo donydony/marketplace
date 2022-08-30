@@ -67,25 +67,15 @@ $(document).ready(function () {
       renderItems(data);
     });
   })
+  $(".sort-filter-by").on("submit", function (event) {
+    event.preventDefault();
+    $(".items-section").empty();
+    const data = $(this).serialize();
+    $.post("/filter", data).then(data => {
+      renderItems(data);
+    })
+  })
 
-//   router.post('/user', (req, res) => {
-//     userData(1).then(data => {
-//       return res.json(data);
-//     })
-//   });
-
-//   router.post('/pricerange', (req, res) => {
-//     priceRangeData(1).then(data => {
-//       return res.json(data);
-//     })
-//   });
-
-
-//   router.post('/pricerangedesc', (req, res) => {
-//     priceRangeDataDesc(1).then(data => {
-//       return res.json(data);
-//     })
-//   });
 });
 
 // //href

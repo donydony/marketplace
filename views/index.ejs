@@ -44,24 +44,28 @@
       <button class="filter-btn btn btn-success">Filter/Sort</button>
 
       <section>
-        <form class="sort-filter-by"  method="post" action="">
+        <form class="sort-filter-by">
           <div class="filter-by">
             <span>filter by:</span><br>
             <div>
               <label for="filter-by-seller">seller: </label>
-              <input type="text" id="filter-by-seller" name="filter_by" value="user">
+              <input type="text" id="filter-by-seller" name="filter_by">
             </div><br>
             <div>
-              <label for="filter-by-min-price">minimum price: </label>
-              <input type="text" id="filter-by-min-price" name="filter_by" value="$">
+              <label for="filter-by-min-price">minimum price: $</label>
+              <input type="text" id="filter-by-min-price" name="filter_by">
             </div><br>
             <div>
-              <label for="filter-by-max-price">maximum price: </label>
-              <input type="text" id="filter-by-max-price" name="filter_by" value="$">
+              <label for="filter-by-max-price">maximum price: $</label>
+              <input type="text" id="filter-by-max-price" name="filter_by">
             </div><br>
-
-
+            <div>
+              <label for="filter-by-sort">DESC:</label>
+              <input type="checkbox" id="filter-by-sort" name="filter_by" value="true">
+            </div><br>
+            <button type="submit" id="filter_by" name="filter_by">Filter</button>
           </div>
+        </form>
 
           <div class="sort-by">
             <span>sort by:</span><br>
@@ -82,7 +86,6 @@
             </div>
           </div>
 
-        </form>
       </section>
     </aside>
 
