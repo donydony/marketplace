@@ -9,61 +9,67 @@ const pool = new Pool ({
 });
 
 
-let featuredData = function () {
+let featuredData = function (pageNumber) {
+  let pageRange = pageNumber*10;
   return pool
-    .query(`SELECT * FROM items ORDER BY random() LIMIT 10`)
+    .query(`SELECT * FROM items ORDER BY random() OFFSET $1 LIMIT 10`, [pageRange])
     .then(data => {
-      console.log(data.rows);
+      return data.rows;
     })
 };
 
 
-let newData = function () {
+let newData = function (pageNumber) {
+  let pageRange = pageNumber*10;
   return pool
-    .query(`SELECT * FROM items ORDER BY date_added DESC LIMIT 10`)
+    .query(`SELECT * FROM items ORDER BY date_added DESC OFFSET $1 LIMIT 10`, [pageRange])
     .then(data => {
-      console.log(data.rows);
+      return data.rows;
     })
 };
-let userData = function (name) {
+let userData = function (pageNumber, name) {
+  let pageRange = pageNumber*10;
   return pool
-    .query(`SELECT * FROM items ORDER BY $1 LIMIT 10`, [name])
+    .query(`SELECT * FROM items ORDER BY $1 OFFSET $2 LIMIT 10`, [name, pageRange])
     .then(data => {
-      console.log(data.rows);
+      return data.rows;
     })
 };
-let priceData = function () {
+let priceData = function (pageNumber) {
+  let pageRange = pageNumber*10;
   return pool
-    .query(`SELECT * FROM items ORDER BY price LIMIT 10`)
+    .query(`SELECT * FROM items ORDER BY price OFFSET $1 LIMIT 10`, [pageRange])
     .then(data => {
-      console.log(data.rows);
-    })
-};
-
-let priceDataDesc = function () {
-  return pool
-    .query(`SELECT * FROM items ORDER BY price DESC LIMIT 10`)
-    .then(data => {
-      console.log(data.rows);
+      return data.rows;
     })
 };
 
-let priceRangeData = function (min, max) {
+let priceDataDesc = function (pageNumber) {
+  let pageRange = pageNumber*10;
   return pool
-    .query(`SELECT * FROM items WHERE price BETWEEN $1 AND $2 ORDER BY price LIMIT 10`, [min, max])
+    .query(`SELECT * FROM items ORDER BY price DESC OFFSET $1 LIMIT 10`, [pageRange])
     .then(data => {
-      console.log(data.rows);
+      return data.rows;
     })
 };
 
-let priceRangeDataDesc = function (min, max) {
+let priceRangeData = function (pageNumber, min, max) {
+  let pageRange = pageNumber*10;
   return pool
-    .query(`SELECT * FROM items WHERE price BETWEEN $1 AND $2 ORDER BY price DESC LIMIT 10`, [min, max])
+    .query(`SELECT * FROM items WHERE price BETWEEN $1 AND $2 ORDER BY price OFFSET $3 LIMIT 10`, [min, max, pageRange])
     .then(data => {
-      console.log(data.rows);
+      return data.rows;
+    })
+};
+
+let priceRangeDataDesc = function (pageNumber, min, max) {
+  let pageRange = pageNumber*10;
+  return pool
+    .query(`SELECT * FROM items WHERE price BETWEEN $1 AND $2 ORDER BY price DESC OFFSET $3 LIMIT 10`, [min, max, pageRange])
+    .then(data => {
+      return data.rows;
     })
 };
 
 
 module.exports = {featuredData, newData, userData, priceData, priceDataDesc, priceRangeData, priceRangeDataDesc}
-//not yet implemented pages

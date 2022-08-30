@@ -26,6 +26,12 @@ app.use(
 );
 app.use(express.static('public'));
 
+
+//imported query data
+const {
+  featuredData
+} = require("./db/queries/main.js");
+
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const userApiRoutes = require('./routes/users-api');
@@ -37,6 +43,7 @@ const loginRoutes = require('./routes/login');
 const postItemRoutes = require('./routes/post-item');
 const registerRoutes = require('./routes/register');
 const inboxRoutes = require('./routes/inbox');
+const { Template } = require('ejs');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -57,7 +64,19 @@ app.use('/inbox',inboxRoutes);
 // Separate them into separate routes files (see above).
 
 app.get('/', (req, res) => {
-  res.render('index');
+  featuredData(1).then(data => {
+    const templateVars = {
+      seller_name:
+      seller_avatar:
+      item_url:
+      item_title:
+      item_price:
+      favourite_status:
+      convo_id:
+
+    };
+    res.render('index', templateVars);
+  })
 });
 
 app.listen(PORT, () => {
