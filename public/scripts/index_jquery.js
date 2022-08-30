@@ -33,14 +33,60 @@ $(document).ready(function () {
   };
 
   const loadItems = function () {
-    $.post("/", function (data) {
+    $.post("/featured", function (data) {
       renderItems(data);
     });
   };
 
   loadItems();
 
+  $("#sort-by-featured").click(()=> {
+    $(".items-section").empty();
+    $.post("/featured", function (data) {
+      renderItems(data);
+  })
+})
+
+  $("#sort-by-newest").click(()=> {
+    $(".items-section").empty();
+    $.post("/new", function (data) {
+      renderItems(data);
+    });
+  })
+
+  $("#sort-by-lowest").click(()=> {
+    $(".items-section").empty();
+    $.post("/price", function (data) {
+      renderItems(data);
+    });
+  })
+
+  $("#sort-by-highest").click(()=> {
+    $(".items-section").empty();
+    $.post("/pricedesc", function (data) {
+      renderItems(data);
+    });
+  })
+
+//   router.post('/user', (req, res) => {
+//     userData(1).then(data => {
+//       return res.json(data);
+//     })
+//   });
+
+//   router.post('/pricerange', (req, res) => {
+//     priceRangeData(1).then(data => {
+//       return res.json(data);
+//     })
+//   });
+
+
+//   router.post('/pricerangedesc', (req, res) => {
+//     priceRangeDataDesc(1).then(data => {
+//       return res.json(data);
+//     })
+//   });
 });
 
-//href
-// convo id with buyer and seller
+// //href
+// // convo id with buyer and seller

@@ -1,18 +1,10 @@
 require('dotenv').config();
 const { urlencoded } = require('express');
-const {Pool} = require('pg');
-
-const pool = new Pool ({
-  user: process.env.DB_USER,
-  password: process.env.DB_PASS,
-  host: process.env.DB_HOST,
-  database: process.env.DB_NAME
-});
-
+const db = require('../connection');
 
 let featuredData = function (pageNumber) {
   let pageRange = (pageNumber - 1)*10;
-  return pool
+  return db
     .query(`SELECT img_url, price, title, items.description AS item_description, users.user_pic, users.username, favourites.id AS favourites_id
     FROM items
     JOIN users ON items.seller_id = users.id
@@ -28,7 +20,7 @@ let featuredData = function (pageNumber) {
 
 let newData = function (pageNumber) {
   let pageRange = (pageNumber - 1)*10;
-  return pool
+  return db
     .query(`SELECT img_url, price, title, items.description AS item_description, users.user_pic, users.username, favourites.id AS favourites_id
     FROM items
     JOIN users ON items.seller_id = users.id
@@ -41,7 +33,7 @@ let newData = function (pageNumber) {
 
 let userData = function (pageNumber, name) {
   let pageRange = (pageNumber - 1)*10;
-  return pool
+  return db
     .query(`SELECT img_url, price, title, items.description AS item_description, users.user_pic, users.username, favourites.id AS favourites_id
     FROM items
     JOIN users ON items.seller_id = users.id
@@ -53,7 +45,7 @@ let userData = function (pageNumber, name) {
 };
 let priceData = function (pageNumber) {
   let pageRange = (pageNumber - 1)*10;
-  return pool
+  return db
     .query(`SELECT img_url, price, title, items.description AS item_description, users.user_pic, users.username, favourites.id AS favourites_id
     FROM items
     JOIN users ON items.seller_id = users.id
@@ -66,7 +58,7 @@ let priceData = function (pageNumber) {
 
 let priceDataDesc = function (pageNumber) {
   let pageRange = (pageNumber - 1)*10;
-  return pool
+  return db
     .query(`SELECT img_url, price, title, items.description AS item_description, users.user_pic, users.username, favourites.id AS favourites_id
     FROM items
     JOIN users ON items.seller_id = users.id
@@ -79,7 +71,7 @@ let priceDataDesc = function (pageNumber) {
 
 let priceRangeData = function (pageNumber, min, max) {
   let pageRange = (pageNumber - 1)*10;
-  return pool
+  return db
     .query(`SELECT img_url, price, title, items.description AS item_description, users.user_pic, users.username, favourites.id AS favourites_id
     FROM items
     JOIN users ON items.seller_id = users.id
@@ -92,7 +84,7 @@ let priceRangeData = function (pageNumber, min, max) {
 
 let priceRangeDataDesc = function (pageNumber, min, max) {
   let pageRange = (pageNumber - 1)*10;
-  return pool
+  return db
     .query(`
     SELECT img_url, price, title, items.description AS item_description, users.user_pic, users.username, favourites.id AS favourites_id
     FROM items

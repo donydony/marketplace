@@ -39,6 +39,7 @@ const loginRoutes = require('./routes/login');
 const postItemRoutes = require('./routes/post-item');
 const registerRoutes = require('./routes/register');
 const inboxRoutes = require('./routes/inbox');
+const mainRoutes = require('./routes/main_page');
 const { Template } = require('ejs');
 
 // Mount all resource routes
@@ -60,20 +61,8 @@ app.use('/inbox',inboxRoutes);
 // Separate them into separate routes files (see above).
 
 
+app.use('/', mainRoutes);
 
-//imported query data
-const {
-  featuredData
-} = require("./db/queries/main.js");
-
-app.get('/', (req, res) => {
-  res.render('index');
-});
-app.post('/', (req, res) => {
-  featuredData(1).then(data => {
-    return res.json(data);
-  })
-});
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
