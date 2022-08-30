@@ -64,19 +64,7 @@ app.use('/inbox',inboxRoutes);
 // Separate them into separate routes files (see above).
 
 app.get('/', (req, res) => {
-  featuredData(1).then(data => {
-    const templateVars = {
-      seller_name:
-      seller_avatar:
-      item_url:
-      item_title:
-      item_price:
-      favourite_status:
-      convo_id:
-
-    };
-    res.render('index', templateVars);
-  })
+  res.render('index', templateVars);
 });
 
 app.listen(PORT, () => {

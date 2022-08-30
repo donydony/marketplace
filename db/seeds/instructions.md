@@ -39,6 +39,14 @@ node 01_users_random_seeds.js 5 true
 
 ```
 
+- Table 4 must be generated manually by specifying true/false, sender_id, receiver_id and item_id; randomly conversation generation was removed since it does not make sense practically.
+`
+Simple checks exists to prevent id input exceeding the maximum id of the referenced table but user has to verify manually that either sender_id or receiver_id matches the seller_id for the corresponding item on the items table.
+
+```
+node db/seeds/04_convo_random_seeds.js true 50 3 2
+
+```
 
 - Furthermore, for the messages table, conversation id and sender id can be specified to force creation of messages for a specific conversation(process.argv[5]) by a specific sender(process.argv[4]) BUT true/false must be used at process.argv[3]:
 
@@ -47,7 +55,8 @@ node 05_msgs_random_seeds 5 false 1 6
 
 ```
 
-The above example has a sender_id of 1 and a conversation_id of 6. You can still apply the specific conversation 
+The above example has a sender_id of 1 and a conversation_id of 6. You can still apply the specific conversation.
+
 
 #### NOTE: all randomly generated users current have a password of 'password' which is hashed; this is only for ease of testing and new users on the actual app are allowed to set an unique password(provided they can remember it as it is not stored in the database!!)
 

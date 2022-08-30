@@ -13,14 +13,14 @@ let maxUserID = function () {
   return pool
     .query(`SELECT MAX(id) FROM users`)
     .then(data => {
-      return Math.ceil(Math.random()*data.rows[0].max);
+      return data.rows[0].max;
     })
 };
 let maxItemID = function () {
   return pool
     .query(`SELECT MAX(id) FROM items`)
     .then(data => {
-      return Math.ceil(Math.random()*data.rows[0].max);
+      return data.rows[0].max;
     })
 };
 
@@ -41,18 +41,24 @@ const addConvos =  function(boolean, sender, receiver, item) {
       })
 };
 
-let addNConvos = function(times, boolean) {
-  for (let i = 0; i < times; i ++){
+let addNConvos = function(boolean, sender, receiver, item) {
     maxUserID().then(data => {
-      return maxUserID().then(data2 => {
-        return maxItemID().then(data3 => {
-          return [data, data2, data3];
-        })
+      if(data < sender || data < receiver){
+        throw 'Invalid Input!'
+      }
+      return maxItemID().then(data2 => {
+        if(data2 < item){
+          throw 'Invalid Input!'
+        }
+        return true;
+      }).catch(err => {
+        console.log(err);
       })
     }).then(data => {
-      addConvos(boolean, data[0], data[1], data[2]);
+      addConvos(boolean, sender, receiver, item);
+    }).catch(err => {
+      console.log(err);
     })
-  }
 };
 
 module.exports = {addNConvos};

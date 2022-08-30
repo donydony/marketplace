@@ -1,3 +1,5 @@
+const {featuredData, newData, userData, priceData, priceDataDesc, priceRangeData, priceRangeDataDesc} = require('./../../db/queries/main.js')
+
 
 $(document).ready(function () {
   const createitemElement = function (data) {
@@ -31,8 +33,8 @@ $(document).ready(function () {
   //   }
   // };
 
-  // const loadItems = function () {
-  //   $.get("/").then((data) => {
+  // const loadItems = function (filter) {
+  //   featuredData().then((data) => {
   //     $("#items-section").empty();
   //     renderItems(data);
   //   });
@@ -40,25 +42,4 @@ $(document).ready(function () {
 
   // loadItems();
 
-  $("error").css("display", "none");
-  $("#tweet-form").on("submit", function (event) {
-    event.preventDefault();
-    let tweetLength = $("#tweet-text").val();
-    $(".error").slideUp();
-    if (!tweetLength) {
-      $(".error").css({ "background-color": "red" }).text("Input must have a valid length!!").prepend('<i class="fa-solid fa-triangle-exclamation"></i>');
-      return $(".error").slideDown("slow");
-    }
-    if (tweetLength.length > 140) {
-      $(".error").css({ "background-color": "red" }).text("Input must be 140 characters or less!!").prepend('<i class="fa-solid fa-triangle-exclamation"></i>');
-      return $(".error").slideDown("slow");
-    }
-    const data = $(this).serialize();
-    $.post("/tweets", data).then(() => {
-      $(".error").css({ "background-color": "rgba(162, 0, 255, 0.322)" }).text("Alright!! The world is now one Chirp louder!!").prepend('<i class="fa-solid fa-circle-check"></i>').slideDown("slow");
-      $("#tweet-text").val("");
-      $("#tweet-text").siblings("div").children(".counter").val(140);
-      loadtweets();
-    });
-  });
 });
