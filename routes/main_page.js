@@ -14,7 +14,12 @@ const {
 } = require("../db/queries/main.js");
 
 router.get('/', (req, res) => {
-  res.render('index');
+  const user_id = req.session.user_id;
+
+  const templateVars = {
+    user: user_id
+  }
+  res.render('index', templateVars);
 });
 
 //buttons
