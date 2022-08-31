@@ -14,26 +14,30 @@ const renderErr = false;
  * FOR RENDERING LOGIN PAGE
 *****************************/
 router.get('/', (req, res) => {
-  const user_id = req.session.user_id;
+  const user_name = req.session.user_name;
 
-  const templateVars = {
-    user: user_id
-  }
-  res.render('login',templateVars);
+    const templateVars = {
+      user: user_name,
+    }
+    res.render('login', templateVars);
+
+
+
 });
 
 /*****************************
  * /LOGIN ROUTE (for logining in)
 *****************************/
 router.post('/', (req,res) => {
-  console.log('req',req.body);
+  //console.log('req',req.body);
   const uName = req.body.uname;
   const password = req.body.password;
   // const password = req.body.password;
 
-  userQueries.findUserName(uName).then((result) => {
+  userQueries.findUserNameExists(uName).then((result) => {
 
     const dbUser = result[0];
+    //console.log('dbuser', dbUser);
 
     if(!dbUser) {
       // use jquery to ourput error
@@ -41,8 +45,8 @@ router.post('/', (req,res) => {
       res.status(403).send(' Wrong user name or password');
       return;
     }else {
-      if(bcrypt.compareSync(password,dbUser.password)) {
-        req.session.user_id = dbUser.username;
+      if(bcrypt.compareSync(password, dbUser.password)) {
+        req.session.user_name = dbUser.username;
         res.status(201).send('SUCCESS');
       }else {
         res.status(403).send(' Wrong password');

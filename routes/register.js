@@ -4,16 +4,24 @@ const router  = express.Router();
 const bcrypt = require('bcryptjs');
 const salt = bcrypt.genSaltSync(10);
 
+
+/*****************************
+ * /REGISTER ROUTE (for rendering register page)
+*****************************/
 router.get('/', (req, res) => {
-const user_id = req.session.user_id;
+const user_name = req.session.user_name;
   const templateVars = {
-    user: user_id
+    user: user_name
   }
   res.render('register',templateVars);
 });
 
+
+/*****************************
+ * /REGISTER ROUTE for registering a new user
+*****************************/
 router.post('/', (req, res) => {
-  console.log(req.body);
+  //console.log(req.body);
   const userName = req.body.userName;
   const password = req.body.password;
   const hashedPassword = bcrypt.hashSync(password,salt);
@@ -24,7 +32,8 @@ router.post('/', (req, res) => {
   const aboutMe = req.body.aboutMe;
   console.log('hashed pass:', hashedPassword);
 
-  userQueries.findUserName(userName).then(result => {
+  userQueries.findUserNameExists(userName).then(result => {
+
     if(result[0]) {
        res.status(403).send(`User ${userName} already exists`);
        return;
@@ -39,7 +48,7 @@ router.post('/', (req, res) => {
         aboutMe
         ).then(result => {
           console.log('Added new user', result);
-          req.session.user_id = userName;
+          req.session.user_name = result[0].username;
           res.status(201).send('SUCCESS');
           return;
         });

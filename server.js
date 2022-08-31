@@ -50,10 +50,10 @@ const logoutRoutes = require('./routes/logout');
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
-app.use('/api/users', userApiRoutes);
-app.use('/api/widgets', widgetApiRoutes);
+//app.use('/api/users', userApiRoutes);
+//app.use('/api/widgets', widgetApiRoutes);
 app.use('/user', userRoutes);
-app.use('/user/fav',userFavRoutes);
+//app.use('/user/fav',userFavRoutes);
 app.use('/messages', messagesRoutes);
 app.use('/login',loginRoutes);
 app.use('/post-item',postItemRoutes);

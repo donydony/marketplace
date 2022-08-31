@@ -10,14 +10,15 @@ const router  = express.Router();
 
 //imported query data
 const {
-  featuredData, newData, filterData, priceData, priceDataDesc
+  featuredData, newData, filterData, priceData, priceDataDesc, convoSearch
 } = require("../db/queries/main.js");
 
+
 router.get('/', (req, res) => {
-  const user_id = req.session.user_id;
+  const user_name = req.session.user_name;
 
   const templateVars = {
-    user: user_id
+    user: user_name
   }
   res.render('index', templateVars);
 });
@@ -57,4 +58,20 @@ router.post('/filter', (req, res) => {
     return res.json(data);
   })
 });
+
+
+
+// //favourites
+// router.post('/fav', (req, res) => {
+//   console.log(req.body);
+//   //retreive user_id from cookie
+//   //retrieve seller id  and item from item
+//   //convoSearch(seller, user, item).then(data => {
+//     //return res.json(data);
+//   //})
+
+//   let data = req.body;
+//   return res.json(data);
+// });
+
 module.exports = router;

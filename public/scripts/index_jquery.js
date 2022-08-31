@@ -19,10 +19,13 @@ $(document).ready(function () {
     const $seller_name = $("<h5>").text(data.username);
     const $seller_info_div = $("<div>").addClass("seller_info").append($user_img, $seller_name);
 
-    const $button = $("<button>").attr("type", 'button').text("Message This Seller!");
+    const $button = $("<button>").attr("type", 'button')
+    if (data.sold_status) {
+      $button.text("SOLD");
+    } else {
+      $button.text("Message This Seller!").addClass("msg-redirect");
+    }
     const $sub_sect_3 = $("<section>").addClass("sub-sect3").append($star_wrapper, $seller_info_div, $button);
-
-
 
     const $article = $("<article>").addClass("item").append($sub_sect_1, $sub_sect_2, $sub_sect_3);
     return $article;

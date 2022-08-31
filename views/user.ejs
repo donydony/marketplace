@@ -48,53 +48,24 @@
   <main>
 
   <section class="your-items">
-
+    <a class="post-item" href="/post-item">
+      <button>POST A NEW ITEM</button>
+      </a>
     <section class="profile">
       <img src="" alt="">
       <div>
         <h5>Joined: (TIMESTAMP)</h5>
         <article class="about-me"></article>
+        <button>Update about me </button>
+        <form method="post" action="/users">
+          <textarea name="aboutME" id="about-me" cols="30" rows="10"></textarea>
+          <button>Update</button>
+        </form>
       </div>
     </section>
 
 
       <article class="listing">
-
-         <!-- ITEM 1 -->
-         <article class="item">
-          <section class="sub-sect1">
-            <div class="seller-info">
-              <img src="" alt="SELLER AVATAR">
-              <h5> SELLER NAME</h5>
-            </div>
-
-            <div class="item-img">
-              <img src="" alt="ITEM IMG">
-            </div>
-          </section>
-
-          <section class="sub-sect2">
-              <h5>
-                <span>ITEM TITLE</span>
-              </h5>
-              <span>$PRICE</span>
-              <textarea name="item-description" class="item-description" cols="60" rows="6"></textarea>
-          </section>
-
-          <section class="sub-sect3">
-            <div>
-              Favourite this item
-            <i class="fa-solid fa-star"></i>
-            </div>
-            <button>Message Seller</button>
-          </section>
-
-        </article>
-
-        <div>
-          <button class="delete">Delete item</button>
-          <button class="sold">Mark as sold</button>
-        </div>
       </article>
 
   </section>
@@ -103,7 +74,7 @@
   </main>
 
 
-
+  <script type="text/javascript" src="/scripts/fav.js"></script>
 </body>
 
 </html>

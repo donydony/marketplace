@@ -17,9 +17,10 @@ const insertNewItem = (sellerId , itemName ,imageUrl, price, type, description =
   const date = new Date();
 
   const queryParams = [sellerId, itemName, imageUrl, price, type, description, date, sold];
+  console.log('QUERY PARAMS',queryParams)
 
   return db.query(query,queryParams).then(data => {
-    //console.log('data.rows',data.rows);
+    console.log('data.rows',data.rows);
     return data.rows;
   });
 }
