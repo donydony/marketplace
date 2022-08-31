@@ -73,4 +73,4 @@ let addNUsers = function(times, boolean) {
   }
 };
 
-module.exports = {addNUsers};
+module.exports = {addNUsers,salt};
