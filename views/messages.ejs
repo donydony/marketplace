@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Messages</title>
 
-    <meta charset="UTF-8" >
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+<head>
+  <title>Messages</title>
 
-<!--
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!--
   ****************************************************************************
     EXTERNAL RESOURCES
   ******************************************************************************-->
 
-<!-- FONT AWESOME LINK -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- FONT AWESOME LINK -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+    integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-<!--
+  <!--
 ****************************************************************************
   EXTERNAL STYLE SHEETS
 ******************************************************************************-->
@@ -30,34 +33,185 @@
 
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
   <link rel="stylesheet" href="/vendor/border-box.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+    integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-<!--
+  <!--
 ****************************************************************************
   JS SCRIPTS
 ******************************************************************************-->
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/app.js"></script>
+  <script type="text/javascript" src="/scripts/messages.js"></script>
 
-  </head>
+</head>
 
 <body>
   <header>
-     <%- include('partials/_header') %>
+    <%- include('partials/_header') %>
   </header>
   <main>
-
     <section class="messages-section">
-      <section class="messages-box"></section>
+      <section class="messages-box">
+        <section class="messages-header">
+          <div class="user-section">
+            <a href="/inbox">
+              <i class="fa-solid fa-circle-chevron-left"></i>
+            </a>
+            <img class="messages-header-pic" src="https://i.imgur.com/73hZDYK.png" alt="Profile picture">
+            <label class="messages-username">
+              Example Username
+            </label>
+          </div>
+          <label class="messages-item-title">
+            Amazing Bike!
+          </label>
+          <h1><%= allMessages[0].message %></h1>
+        </section>
+
+        <section class="messages-texts" id="messages-texts">
+          <table class="messages-texts-table">
+            <tr>
+              <td>
+                <div class="messages-current-user">
+                  <span>message2</span>
+                  <img class="messages-text-pic" src="https://i.imgur.com/73hZDYK.png" alt="Profile picture">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="messages-current-user">
+                  <span>message3</span>
+                  <img class="messages-text-pic" src="https://i.imgur.com/73hZDYK.png" alt="Profile picture">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="messages-other-user">
+                  <img class="messages-text-pic" src="https://i.imgur.com/73hZDYK.png" alt="Profile picture">
+                  <span>message4</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="messages-other-user">
+                  <img class="messages-text-pic" src="https://i.imgur.com/73hZDYK.png" alt="Profile picture">
+                  <span>message4</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="messages-other-user">
+                  <img class="messages-text-pic" src="https://i.imgur.com/73hZDYK.png" alt="Profile picture">
+                  <span>message4</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="messages-other-user">
+                  <img class="messages-text-pic" src="https://i.imgur.com/73hZDYK.png" alt="Profile picture">
+                  <span>message4</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="messages-other-user">
+                  <img class="messages-text-pic" src="https://i.imgur.com/73hZDYK.png" alt="Profile picture">
+                  <span>message4</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="messages-current-user">
+                  <span>message2</span>
+                  <img class="messages-text-pic" src="https://i.imgur.com/73hZDYK.png" alt="Profile picture">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="messages-current-user">
+                  <span>message2</span>
+                  <img class="messages-text-pic" src="https://i.imgur.com/73hZDYK.png" alt="Profile picture">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="messages-current-user">
+                  <span>message2</span>
+                  <img class="messages-text-pic" src="https://i.imgur.com/73hZDYK.png" alt="Profile picture">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="messages-current-user">
+                  <span>message2</span>
+                  <img class="messages-text-pic" src="https://i.imgur.com/73hZDYK.png" alt="Profile picture">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="messages-other-user">
+                  <img class="messages-text-pic" src="https://i.imgur.com/73hZDYK.png" alt="Profile picture">
+                  <span>message4</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="messages-other-user">
+                  <img class="messages-text-pic" src="https://i.imgur.com/73hZDYK.png" alt="Profile picture">
+                  <span>message4</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="messages-other-user">
+                  <img class="messages-text-pic" src="https://i.imgur.com/73hZDYK.png" alt="Profile picture">
+                  <span>message4 message4message4 message4message4 message4message4 message4message4 message4message4
+                    message4message4 message4message4 message4message4 message4message4 message4message4
+                    message4message4 message4message4 message4message4 message4message4 message4message4
+                    message4message4 message4message4 message4message4 message4message4 </span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="messages-other-user">
+                  <img class="messages-text-pic" src="https://i.imgur.com/73hZDYK.png" alt="Profile picture">
+                  <span>message4</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="messages-other-user">
+                  <img class="messages-text-pic" src="https://i.imgur.com/73hZDYK.png" alt="Profile picture">
+                  <span>message4</span>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </section>
+      </section>
 
       <form class="new-message-form" method="post" action="">
-        <input
-              class="new-message"
-              type="new-message"
-              name="new-message"
-              placeholder="Enter new message"
-              style="margin-bottom: 1em"
-        />
-        <button class="submit btn btn-primary">Submit</button>
+        <input class="new-message" type="new-message" name="new-message" placeholder="Enter new message"
+          style="margin-bottom: 1em" />
+        <output id="tcounter" name="counter" class="counter" for="tweet-text">140</output>
+        <button class="submit btn btn-primary">Send</button>
       </form>
     </section>
 
