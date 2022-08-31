@@ -1,6 +1,5 @@
 const db = require('../connection');
 
-
 const getUsers = () => {
   return db.query('SELECT * FROM users;')
     .then(data => {
@@ -16,6 +15,19 @@ const findUserName = (userName) => {
   const queryParams = [userName];
   return db.query(query,queryParams).then(data => {
     //console.log('data.rows',data.rows);
+    return data.rows;
+  });
+}
+
+const findUserId = (userName) => {
+  const query = `
+  SELECT id
+  FROM users
+  WHERE username = $1
+  `;
+  const queryParams = [userName];
+
+  return db.query(query,queryParams).then(data => {
     return data.rows;
   });
 }
@@ -41,4 +53,4 @@ const insertNewUser = (userName, password, firstName, lastName, userPic, address
 }
 
 
-module.exports = { getUsers,findUserName,insertNewUser };
+module.exports = { getUsers,findUserName,insertNewUser,findUserId};
