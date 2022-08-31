@@ -20,5 +20,25 @@ const findUserName = (userName) => {
   });
 }
 
+const insertNewUser = (userName, password, firstName, lastName, userPic, address, aboutMe) => {
+  const query = `
+  INSERT INTO users (
+    username,
+    password,
+    admin,
+    user_pic,
+    first_name,
+    last_name,
+    address,
+    description)
+  VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+  RETURNING *`;
 
-module.exports = { getUsers,findUserName };
+  const admin = false;
+  const queryParams = [userName, password, admin, firstName, lastName, userPic, address, aboutMe];
+
+  return db.query(query,queryParams).then(data => {return data.rows});
+}
+
+
+module.exports = { getUsers,findUserName,insertNewUser };

@@ -37,6 +37,7 @@
 ******************************************************************************-->
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/app.js"></script>
+  <script defer src="/scripts/registerError.js"></script>
 
   </head>
 <body>
@@ -49,12 +50,13 @@
     <section class="register-section">
       <h2 class="register-heading">Register</h2>
 
-      <form method="post" action="/register">
+      <form id="register-form" method="post" action="/register">
 
         <h5>New user</h5>
           <div class="userName-password">
 
             <div >
+              <label class="error" id="error" ><i class="fa-solid fa-triangle-exclamation" ><span> HELLLOO</span></i> </label>
               <label for="userName">New User</label>
               <input
                     class="form-control"
@@ -112,7 +114,7 @@
               <input
                       class="form-control"
                       type="text"
-                      name="user-pic"
+                      name="userPic"
                       placeholder="Enter a url"
                       required="true"
                       style="margin-bottom: 1em"
@@ -136,7 +138,7 @@
 
           <div class="about-me">
             <h5>About me</h5>
-            <textarea name="about-me" cols="0" rows="10" placeholder="Enter description"></textarea>
+            <textarea type="text" name="aboutMe" cols="0" rows="10" placeholder="Enter description"></textarea>
           </div>
 
           </div>

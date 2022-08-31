@@ -19,6 +19,13 @@
     @include flex;
     div {
       margin:0 1em;
+
+      .error{
+        text-align: center;
+        display: none;
+        padding: 0 0.4em;
+        color: red;
+      }
     }
 
   }
