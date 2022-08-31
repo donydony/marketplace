@@ -10,7 +10,10 @@
 
 <!-- FONT AWESOME LINK -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+<!-- google font import -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
 <!--
 ****************************************************************************
   EXTERNAL STYLE SHEETS
@@ -68,21 +71,23 @@
         </form>
 
           <div class="sort-by">
-            <span>sort by:</span><br>
-            <div>
-              <button type="button" id="sort-by-featured" name="sort_by">Featured</button>
-            </div>
+            <span>sort by:</span>
+            <div id="button-holder">
+              <div>
+                <button type="button" id="sort-by-featured" name="sort_by">Featured</button>
+              </div>
 
-            <div>
-              <button type="button" id="sort-by-newest" name="sort_by">Newest</button>
-            </div>
+              <div>
+                <button type="button" id="sort-by-newest" name="sort_by">Newest</button>
+              </div>
 
-            <div>
-              <button type="button" id="sort-by-lowest" name="sort_by" value="Lowest">Price (Low to High)</button>
-            </div>
+              <div>
+                <button type="button" id="sort-by-lowest" name="sort_by" value="Lowest">Price (Low to High)</button>
+              </div>
 
-            <div>
-              <button type="button" id="sort-by-highest" name="sort_by" value="Highest">Price (High to Low)</button>
+              <div>
+                <button type="button" id="sort-by-highest" name="sort_by" value="Highest">Price (High to Low)</button>
+              </div>
             </div>
           </div>
 

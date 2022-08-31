@@ -1,14 +1,16 @@
 @import 'mixins';
 @import 'variables';
-
 main {
   height: 2000px;
+  font-family: 'Bungee', cursive;
 
   aside {
-    @include flex($d: column, $c: center,$i:center);
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     button {
-      margin-top: 100px;
+      margin-top: 110px;
       width: 60%;
       outline: none;
       background-color: $danger;
@@ -19,27 +21,53 @@ main {
     section {
       margin: 1em;
       padding: 1em;
-      width: 40%;
+      width: 60%;
+      height: 20%;
       border: 1px solid black;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+
+      .sort-filter-by {
+        display: flex;
+      }
 
       form {
         @include flex($c:space-around);
 
         .filter-by {
           @include flex($d: column, $c: flex-start,$i: flex-end);
+          justify-content: center;
 
           span {
-            align-self: center;
+            align-self: flex-end;
             margin: 1em;
           }
         }
+        button {
+          margin-top: 0px;
+        }
 
-        .sort-by {
-          @include flex($d: column,$c: flex-start, $i:flex-end);
+      }
+      div.sort-by {
+        display:flex;
+        flex-direction: column;
 
-          span {
-            align-self: center;
-            margin: 1em;
+        span {
+          align-self: center;
+          margin: 1em;
+        }
+        #button-holder {
+          height: 10em;
+          width: 20%;
+          margin-left: 1em;
+          display: block;
+          div{
+            button{
+              width:10em;
+              height:auto;
+              margin-top: 0px;
+            }
           }
         }
       }
@@ -47,4 +75,35 @@ main {
   }
 
 
+}
+
+section.items-section {
+  article {
+    width: 100%;
+    section.sub-sect1{
+      div.item_img{
+        img{
+          width: 25em;
+          height: auto;
+          border-radius: 1em;
+          margin: 1em;
+        }
+      }
+    }
+    section.sub-sect2{
+      width: 25%;
+      div{
+        span{
+          margin:1em;
+        }
+      }
+    }
+    section.sub-sect3{
+      div{
+        img{
+          border-radius: 1em;
+        }
+      }
+    }
+  }
 }

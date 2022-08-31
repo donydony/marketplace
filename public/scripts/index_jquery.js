@@ -1,24 +1,26 @@
 $(document).ready(function () {
   const createItemElement = function (data) {
 
-    const $user_img = $("<img>").attr("src", data.user_pic);
-    const $seller_name = $("<h5>").text(data.username);
-    const $seller_info_div = $("<div>").addClass("seller_info").append($user_img, $seller_name);
     const $item_img = $("<img>").attr("src", data.img_url);
     const $item_img_div = $("<div>").addClass("item_img").append($item_img);
-    const $sub_sect_1 = $("<section>").addClass("sub-sect1").append($seller_info_div, $item_img_div);
+    const $sub_sect_1 = $("<section>").addClass("sub-sect1").append($item_img_div);
 
 
     const $item_title = $("<span>").text(data.title);
-    const $item_title_wrapper = $("<h5>").append($item_title);
     const $price = $("<span>").text('$' + (data.price / 100));
+    const $item_title_wrapper = $("<div>").append($item_title, $price);
     const $item_description = $("<p>").text(data.item_description);
-    const $sub_sect_2 = $("<section>").addClass("sub-sect2").append($item_title_wrapper, $price, $item_description);
+    const $sub_sect_2 = $("<section>").addClass("sub-sect2").append($item_title_wrapper, $item_description);
 
     const $star = $("<i>").addClass("fa-solid fa-star");
     const $star_wrapper = $("<div>").text("Favourite this item").append($star);
-    const $button = $("<button>").attr("type", 'button');
-    const $sub_sect_3 = $("<section>").addClass("sub-sect3").append($star_wrapper, $button);
+
+    const $user_img = $("<img>").attr("src", data.user_pic);
+    const $seller_name = $("<h5>").text(data.username);
+    const $seller_info_div = $("<div>").addClass("seller_info").append($user_img, $seller_name);
+
+    const $button = $("<button>").attr("type", 'button').text("Message This Seller!");
+    const $sub_sect_3 = $("<section>").addClass("sub-sect3").append($star_wrapper, $seller_info_div, $button);
 
 
 
@@ -78,5 +80,4 @@ $(document).ready(function () {
 
 });
 
-// //href
-// // convo id with buyer and seller
+
