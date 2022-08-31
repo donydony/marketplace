@@ -9,6 +9,45 @@
     font-size: 25px;
   }
 
+  form {
+    h5 {
+      text-align: start;
+    }
+  }
+
+  .userName-password {
+    @include flex;
+    div {
+      margin:0 1em;
+    }
+
+  }
+
+  .firstName-lastName {
+    @include flex;
+    div {
+      margin:0 1em;
+    }
+  }
+
+  .about {
+    @include flex($c: space-around);
+
+    div {
+      @include flex($d: column,$i: flex-start)
+    }
+
+  }
+
+  .about-me {
+    @include flex($d: column,$i: center);
+    input {
+      text-align: center;
+      width: 100%;
+      height: 30vh;
+    }
+  }
+
   .register-submit {
     width: 100%;
     border: 2px solid black;

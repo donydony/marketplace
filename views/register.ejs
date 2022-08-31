@@ -48,31 +48,108 @@
 
     <section class="register-section">
       <h2 class="register-heading">Register</h2>
+
       <form method="post" action="/register">
-        <div class="email-input">
-          <div >
-            <h5>New Email address</h5>
-            <input
-                  class="form-control"
-                  type="email"
-                  name="email"
-                  placeholder="Enter a new email"
-                  style="margin-bottom: 1em"
-            />
+
+        <h5>New user</h5>
+          <div class="userName-password">
+
+            <div >
+              <label for="userName">New User</label>
+              <input
+                    class="form-control"
+                    type="text"
+                    name="userName"
+                    placeholder="Enter a user name"
+                    required="true"
+                    style="margin-bottom: 1em"
+              />
+            </div>
+
+            <div >
+              <label for="userName">New password</label>
+              <input
+                    class="form-control"
+                    type="password"
+                    name="password"
+                    placeholder="Enter a new password"
+                    required="true"
+                    style="margin-bottom: 1em"
+              />
+            </div>
+          </div>
+          <h5>Name</h5>
+          <div class="firstName-lastName">
+
+            <div >
+              <label for="firstName">First name</label>
+              <input
+                    class="form-control"
+                    type="text"
+                    name="firstName"
+                    placeholder="Enter a first name"
+                    required="true"
+                    style="margin-bottom: 1em"
+              />
+            </div>
+
+            <div >
+              <label for="lastName">Last name</label>
+              <input
+                    class="form-control"
+                    type="text"
+                    name="lastName"
+                    placeholder="Enter a surname"
+                    required="true"
+                    style="margin-bottom: 1em"
+              />
+            </div>
           </div>
 
-          <div >
-            <h5>Enter a new password</h5>
+          <section class="about">
+            <div class="profile-pic">
+              <h5>Profile picture</h5>
+              <input
+                      class="form-control"
+                      type="text"
+                      name="user-pic"
+                      placeholder="Enter a url"
+                      required="true"
+                      style="margin-bottom: 1em"
+                />
+              </div>
+
+              <div class="address" >
+                <h5>Address</h5>
+                <input
+                        class="form-control"
+                        type="text"
+                        name="address"
+                        placeholder="Enter an address"
+                        required="true"
+                        style="margin-bottom: 1em"
+                  />
+              </div>
+
+
+          </section>
+
+          <div class="about-me">
+            <h5>About me</h5>
             <input
-                  class="form-control"
-                  type="password"
-                  name="password"
-                  placeholder="Enter a new password"
-                  style="margin-bottom: 1em"
-            />
+                    class="form-control"
+                    type="text"
+                    name="about-me"
+                    placeholder="Enter a description"
+                    required="true"
+                    style="margin-bottom: 1em"
+              />
           </div>
+
+          </div>
+
           <button class="register-submit" type="submit">register</button>
-        </div>
+
       </form>
     </section>
 

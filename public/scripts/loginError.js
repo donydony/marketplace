@@ -7,6 +7,10 @@ $('#login-form').submit(function(e) {
   //prevent the page from refresging
  e.preventDefault();
 
+/** Ajax will post to login route
+ * and will wait for a response
+ * from the route in the form
+ * of a success or an error*/
 $.ajax({
     url: '/login',
     type: 'POST',
