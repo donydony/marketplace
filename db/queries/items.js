@@ -25,4 +25,18 @@ const insertNewItem = (sellerId , itemName ,imageUrl, price, type, description =
   });
 }
 
-module.exports = {insertNewItem};
+const deleteItem = (itemId) => {
+  const query = `
+  DELETE FROM items
+  WHERE id = $1;
+  `;
+  const queryParams = [itemId];
+
+  return db.query(query,queryParams).then(data => {
+    console.log(`DELETED ITEM from user with id ${itemId} and item name`);
+    //return data.rows;
+  });
+}
+
+
+module.exports = {insertNewItem,deleteItem};

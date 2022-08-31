@@ -4,7 +4,7 @@ const db = require('../connection');
 
 let favData = function (userName) {
   return db
-    .query(`SELECT items.id as item_id, img_url, price, title, items.description AS item_description, favourites.id AS favourites_id
+    .query(`SELECT items.id as item_id, img_url, items.sold_status, price, title, items.description AS item_description, favourites.id AS favourites_id
     FROM items
     JOIN users ON items.seller_id = users.id
     LEFT JOIN favourites ON favourites.user_id = users.id
@@ -15,17 +15,14 @@ let favData = function (userName) {
     })
 };
 
-// let featuredData = function (pageNumber) {
-//   let pageRange = (pageNumber - 1)*10;
-//   return db
-//     .query(`SELECT items.id as item_id, img_url, price, title, items.description AS item_description, users.user_pic, users.username, favourites.id AS favourites_id
-//     FROM items
-//     JOIN users ON items.seller_id = users.id
-//     LEFT JOIN favourites ON favourites.user_id = users.id
-//     ORDER BY random() OFFSET $1 LIMIT 10`, [pageRange])
-//     .then(data => {
-//       return data.rows;
-//     })
-// };
+let MarkSoldData = function (itemName) {
+  return db
+    .query(`UPDATE items
+    SET sold_status = true
+    WHERE id = $1 RETURNING *`, [itemName])
+    .then(data => {
+      return data.rows;
+    })
+};
 
-module.exports = {favData};
+module.exports = {favData, MarkSoldData};

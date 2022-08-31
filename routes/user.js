@@ -8,10 +8,11 @@
 const express = require('express');
 const router  = express.Router();
 const userQueries = require('../db/queries/users');
+const itemQueries = require('../db/queries/items');
 
 
 const {
-  favData
+  favData, MarkSoldData
 } = require("../db/queries/userfavs.js");
 
 /*****************************
@@ -59,5 +60,24 @@ router.post('/fav', (req, res) => {
     return res.json(data);
   })
 });
+
+router.post('/fav/sold', (req, res) => {
+  MarkSoldData(req.body.item_id).then(data => {
+    return res.json(data);
+
+  })
+});
+
+router.post('/fav/delete', (req,res) => {
+  const user_name = req.session.user_name;
+  const item_id = req.body.item_id;
+
+  if(!user_name) {
+    return res.status(400).send("Error : Please Login");
+  }
+  itemQueries.deleteItem( item_id).then(result => {
+    res.status(201).send();
+  });
+})
 
 module.exports = router;
