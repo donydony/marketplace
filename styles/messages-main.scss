@@ -6,9 +6,15 @@ main {
   .messages-section {
     @include flex($d: column, $i: center);
 
+    .messages-item-title {
+      margin-top: 110px;
+      width: 70%;
+      text-align: center;
+    }
+
     .messages-box {
       @include flex($d: column);
-      margin-top: 110px;
+      margin-top: 0px;
       height: 70vh;
       width: 70%;
       border: 3px solid black;
@@ -44,11 +50,6 @@ main {
       .messages-username {
         width: max-content;
       }
-    }
-
-    .messages-item-title {
-      position: absolute;
-      left: calc(50% - 60px);
     }
 
     .messages-texts {
@@ -99,11 +100,15 @@ main {
       border-radius: 25px;
     }
 
+    #message-error {
+      color: red;
+      margin: 7px 0px;
+    }
+
     .new-message-form {
       @include flex($c: center);
       width: 69%;
       height: 7vh;
-      margin-top: 1em;
       border: none;
 
       .new-message {

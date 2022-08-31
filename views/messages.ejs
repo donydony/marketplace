@@ -42,8 +42,9 @@
   JS SCRIPTS
 ******************************************************************************-->
   <script src="/vendor/jquery-3.0.0.js"></script>
+  <script src="https://cdn.socket.io/4.5.0/socket.io.min.js" integrity="sha384-7EyYLQZgWBi67fBtVxw60/OWl1kjsfrPFcaU0pp0nAh+i8FD068QogUvg85Ewy1k" crossorigin="anonymous"></script>
   <script defer src="/scripts/app.js"></script>
-  <script type="text/javascript" src="/scripts/messages.js"></script>
+  <script defer type="text/javascript" src="/scripts/messages.js"></script>
 
 </head>
 
@@ -53,6 +54,9 @@
   </header>
   <main>
     <section class="messages-section">
+      <h2 class="messages-item-title">
+        <%= allMessages[0].item_title %>
+      </h2>
       <section class="messages-box">
         <section class="messages-header">
           <div class="user-section">
@@ -73,9 +77,6 @@
               <% } %>
             </label>
           </div>
-          <label class="messages-item-title">
-            <%= allMessages[0].item_title %>
-          </label>
         </section>
 
         <section class="messages-texts" id="messages-texts">
@@ -98,12 +99,13 @@
           </table>
         </section>
       </section>
-
-      <form class="new-message-form" method="post" action="">
-        <input class="new-message" type="new-message" name="new-message" placeholder="Enter new message"
-          style="margin-bottom: 1em" />
+      <section id="message-error"></section>
+      <form class="new-message-form" method="post" action="/messages/" id="new-message">
+        <input name="convo_id" value="<%= convo_id %>" style="display: none;" />
+        <input name="sender_id" value="<%= user_id %>" style="display: none;" />
+        <input class="new-message" type="new_message" name="new_message" placeholder="Enter new message" id="new-message-text" />
         <output id="tcounter" name="counter" class="counter" for="tweet-text">300</output>
-        <button class="submit btn btn-primary">Send</button>
+        <button class="submit btn btn-primary" type="submit">Send</button>
       </form>
     </section>
 
