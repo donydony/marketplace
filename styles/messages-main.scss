@@ -16,19 +16,6 @@ main {
 
     }
 
-    .user-section {
-      @include flex($d: row, $i: center);
-    }
-
-    .messages-header-pic {
-      margin-left: 10px;
-      margin-right: 10px;
-    }
-
-    .messages-username {
-      width: max-content;
-    }
-
     .messages-header {
       @include flex($i: center);
       border-bottom: 2px solid black;
@@ -42,6 +29,21 @@ main {
       left: 0;
       top: 0;
       width: 100%;
+
+      .user-section {
+        @include flex($d: row, $i: center);
+      }
+  
+      .messages-header-pic {
+        margin-left: 10px;
+        margin-right: 10px;
+        height: 60px;
+        border-radius: 100px;
+      }
+  
+      .messages-username {
+        width: max-content;
+      }
     }
 
     .messages-item-title {
@@ -94,6 +96,7 @@ main {
       margin-left: 10px;
       margin-right: 10px;
       height: 25px;
+      border-radius: 25px;
     }
 
     .new-message-form {
