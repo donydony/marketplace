@@ -77,6 +77,9 @@ $(document).ready(function () {
       renderItems(data);
     })
   })
+  $(".btn-success").click(function () {
+    $(".search_box").slideToggle();
+  })
 
 });
 
