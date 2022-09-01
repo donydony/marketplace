@@ -3,9 +3,13 @@ const messagesQueries = require('../db/queries/messages');
 const router = express.Router();
 
 router.get('/:id', (req, res) => {
+  const user_id = req.session.user_id;
+  const username = req.session.user_name;
+
   messagesQueries.getAllMessages(req.params.id)
     .then(messages => {
-      const templateVars = { allMessages: { messages }['messages'], convo_id: req.params.id, user_id: 1 };
+      const templateVars = { allMessages: { messages }['messages'], convo_id: req.params.id, user_id: user_id , user: username
+     };
       res.render('messages', templateVars);
     })
     .catch(err => {

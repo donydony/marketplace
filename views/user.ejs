@@ -39,7 +39,7 @@
   JS SCRIPTS
 ******************************************************************************-->
   <script src="/vendor/jquery-3.0.0.js"></script>
-  <script defer src="/scripts/app.js"></script>
+  <script defer src="/scripts/user.js"></script>
   <!-- Bootstrap -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 
@@ -57,18 +57,22 @@
       <button>POST A NEW ITEM</button>
       </a>
     <section class="profile">
-      <img src="" alt="">
+      <img src=<%= userPic %> alt="profile pic">
       <div>
-        <h5>Joined: (TIMESTAMP)</h5>
-        <article class="about-me"></article>
-        <button>Update about me </button>
-        <form method="post" action="/users">
-          <textarea name="aboutME" id="about-me" cols="30" rows="10"></textarea>
-          <button>Update</button>
-        </form>
+        <div class="about">
+          <form class="update-form" method="post" action="/user/update">
+            <textarea class="aboutME-text" name="aboutMe" id="about-me" cols="30" rows="10"></textarea>
+            <button>Update</button>
+          </form>
+
+          <div class="update-div">
+            <article class="about-me"><%= description %></article>
+            <button class="update">Update about me </button>
+          </div>
+
+        </div>
       </div>
     </section>
-
 
       <article class="listing">
       </article>

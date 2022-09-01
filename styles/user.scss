@@ -6,16 +6,17 @@
   margin-top: 110px;
 
   .post-item {
-    border: 2px solid black;
+
+
+    button {
+      border: 2px solid black;
       border-radius: $btn-round;
-
-      form{
-        @include flex($d: column, $i: center);
-        button {
-          background-color: greenyellow;
-        }
-      }
-
+      height: 80px;
+      width: 200px;
+      background-color: red;
+      color: white;
+      margin-bottom: 70px;
+    }
   }
 
   .profile {
@@ -31,16 +32,46 @@
     div {
       @include flex($d: column, $i: center);
 
-      article {
-        width: 500px;
-        height: 10vh;
-        border: 1px solid;
-      }
+      .about{
 
-      button {
-        border: 2px solid black;
-        border-radius: $btn-round;
-        background-color: greenyellow;
+        .update-form {
+          width: 500px;
+          display: none;
+
+          textarea {
+            width: 500px;
+            height: 10vh;
+            border: 1px solid;
+          }
+
+          button {
+            width: 100%;
+            border: 2px solid black;
+            border-radius: $btn-round;
+            background-color: greenyellow;
+          }
+
+        }
+
+        .update-div {
+          width: 500px;
+          article {
+            width: 500px;
+            height: 10vh;
+            border: 1px solid;
+            text-align: center;
+          }
+
+          button {
+            width: 100%;
+            border: 2px solid black;
+            border-radius: $btn-round;
+            background-color: greenyellow;
+          }
+        }
+
+
+
       }
     }
 
