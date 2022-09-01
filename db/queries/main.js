@@ -76,7 +76,6 @@ let filterData = function (pageNumber, name, min, max, boolean) {
     queryString += " DESC";
   }
   queryString += ` LIMIT 10 OFFSET ${pageRange}`;
-  console.log (queryString);
   return db
     .query(queryString)
     .then(data => {

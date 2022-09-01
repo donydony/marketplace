@@ -21,7 +21,6 @@ const {
 
 router.get('/', (req, res) => {
   const user_name = req.session.user_name;
-  console.log('cookie:',req.session);
   const templateVars = {
     user: user_name
   }
@@ -46,7 +45,6 @@ router.post('/', (req,res) => {
   }
 
   userQueries.updateUserDescription(user_name, aboutMe).then(result => {
-    //console.log(result);
     res.redirect('/user');
   });
 });
