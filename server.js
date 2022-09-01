@@ -34,10 +34,7 @@ app.use(cookieSession({
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
-const userApiRoutes = require('./routes/users-api');
-const widgetApiRoutes = require('./routes/widgets-api');
 const userRoutes = require('./routes/user');
-const userFavRoutes = require('./routes/user-fav');
 const messagesRoutes = require('./routes/messages');
 const loginRoutes = require('./routes/login');
 const postItemRoutes = require('./routes/post-item');
@@ -46,6 +43,7 @@ const inboxRoutes = require('./routes/inbox');
 const mainRoutes = require('./routes/main_page');
 const { Template } = require('ejs');
 const logoutRoutes = require('./routes/logout');
+const userFavRoutes = require('./routes/user-fav');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -53,7 +51,7 @@ const logoutRoutes = require('./routes/logout');
 //app.use('/api/users', userApiRoutes);
 //app.use('/api/widgets', widgetApiRoutes);
 app.use('/user', userRoutes);
-//app.use('/user/fav',userFavRoutes);
+app.use('/favourites',userFavRoutes);
 app.use('/messages', messagesRoutes);
 app.use('/login',loginRoutes);
 app.use('/post-item',postItemRoutes);

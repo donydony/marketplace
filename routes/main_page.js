@@ -10,7 +10,7 @@ const router  = express.Router();
 
 //imported query data
 const {
-  featuredData, newData, filterData, priceData, priceDataDesc, convoSearch
+  featuredData, newData, filterData, priceData, priceDataDesc
 } = require("../db/queries/main.js");
 
 
@@ -60,18 +60,5 @@ router.post('/filter', (req, res) => {
 });
 
 
-
-// //favourites
-// router.post('/fav', (req, res) => {
-//   console.log(req.body);
-//   //retreive user_id from cookie
-//   //retrieve seller id  and item from item
-//   //convoSearch(seller, user, item).then(data => {
-//     //return res.json(data);
-//   //})
-
-//   let data = req.body;
-//   return res.json(data);
-// });
 
 module.exports = router;

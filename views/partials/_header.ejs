@@ -11,7 +11,7 @@
       <% if(user){ %>
     <div class="user-div">
       <form class="user-name" method="POST" action="/logout">
-        <h5>Logged in as: <%= user%></h5>
+        <a href="/user">Logged in as: <%= user%></a>
         <button>Logout</button>
       </form>
 

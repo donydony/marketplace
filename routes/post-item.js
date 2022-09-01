@@ -40,7 +40,7 @@ router.post('/', (req,res) => {
     )
   .then( result => {
     console.log('SUCCESS added item', result);
-    res.redirect('/post-item');
+    res.redirect('/user');
   })
   });
 

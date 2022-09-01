@@ -47,6 +47,7 @@ router.post('/', (req,res) => {
     }else {
       if(bcrypt.compareSync(password, dbUser.password)) {
         req.session.user_name = dbUser.username;
+        req.session.user_id = dbUser.id;
         res.status(201).send('SUCCESS');
       }else {
         res.status(403).send(' Wrong password');

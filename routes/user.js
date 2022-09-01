@@ -61,14 +61,14 @@ router.post('/fav', (req, res) => {
   })
 });
 
-router.post('/fav/sold', (req, res) => {
+router.put('/fav/sold', (req, res) => {
   MarkSoldData(req.body.item_id).then(data => {
     return res.json(data);
 
   })
 });
 
-router.post('/fav/delete', (req,res) => {
+router.delete('/fav/delete', (req,res) => {
   const user_name = req.session.user_name;
   const item_id = req.body.item_id;
 
@@ -79,5 +79,6 @@ router.post('/fav/delete', (req,res) => {
     res.status(201).send();
   });
 })
+
 
 module.exports = router;

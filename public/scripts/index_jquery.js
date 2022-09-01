@@ -12,7 +12,24 @@ $(document).ready(function () {
     const $item_description = $("<p>").text(data.item_description);
     const $sub_sect_2 = $("<section>").addClass("sub-sect2").append($item_title_wrapper, $item_description);
 
-    const $star = $("<i>").addClass("fa-solid fa-star");
+    const $star = $("<i>").addClass("fa-solid fa-star").attr("id", data.favourites_id);
+    if(data.active === true) {
+      $star.addClass("toggle-color");
+    }
+    $star.on("click", function () {
+      $.ajax({
+        type: "PUT",
+        url: "/favourites",
+        data: data,
+        success: (data1) => {
+          $star.toggleClass("toggle-color");
+          if(!($star.attr("id"))){
+            $star.attr("id", data1[0].id)
+          }
+        }
+      });
+    });
+
     const $star_wrapper = $("<div>").text("Favourite this item").append($star);
 
     const $user_img = $("<img>").attr("src", data.user_pic);
@@ -71,7 +88,8 @@ $(document).ready(function () {
     $.post("/pricedesc", function (data) {
       renderItems(data);
     });
-  })
+  });
+
   $(".sort-filter-by").on("submit", function (event) {
     event.preventDefault();
     $(".items-section").empty();

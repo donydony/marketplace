@@ -49,6 +49,7 @@ router.post('/', (req, res) => {
         ).then(result => {
           console.log('Added new user', result);
           req.session.user_name = result[0].username;
+          req.session.user_id = result[0].id;
           res.status(201).send('SUCCESS');
           return;
         });
