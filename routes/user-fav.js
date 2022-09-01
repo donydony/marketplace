@@ -3,6 +3,7 @@ const router  = express.Router();
 
 const {
   checkFavData,
+  checkConvoData,
   updateUserFavData
 } = require("../db/queries/userfavs.js");
 
@@ -20,7 +21,9 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
   checkFavData(req.session.user_id, req.body.item_id).then(data => {
-    return res.json(data);
+    checkConvoData(req.session.user_id, req.body.item_id, req.body.user_id).then(data1 => {
+      return res.json([data, data1]);
+    })
   })
 });
 

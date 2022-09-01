@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  const createItemElement = function (data, favid, favActive) {
+  const createItemElement = function (data, favid, favActive, convoId) {
 
     const obj = {favourite_id : favid};
     const $item_img = $("<img>").attr("src", data.img_url);
@@ -38,13 +38,17 @@ $(document).ready(function () {
     const $seller_name = $("<h5>").text(data.username);
     const $seller_info_div = $("<div>").addClass("seller_info").append($user_img, $seller_name);
 
-    const $button = $("<button>").attr("type", 'button')
-    if (data.sold_status) {
-      $button.text("SOLD").addClass("btn btn-outline-secondary");
-    } else {
-      $button.text("Message This Seller!").addClass("msg-redirect");
+    const $button = $("<button>").css({"display" : "none"});
+    if(Number.isInteger(convoId)){
+      if (data.sold_status) {
+        $button.text("SOLD").attr("type", 'button').addClass("btn btn-outline-secondary");
+      } else {
+        $button.text("Message This Seller!").attr("type", 'submit').addClass("msg-redirect");
+      }
+      $button.css({"display" : "inline"});
     }
-    const $sub_sect_3 = $("<section>").addClass("sub-sect3").append($star_wrapper, $seller_info_div, $button);
+    const $form1 = $("<form>").attr("action", `/messages/${convoId}`).append($button);
+    const $sub_sect_3 = $("<section>").addClass("sub-sect3").append($star_wrapper, $seller_info_div, $form1);
 
     const $article = $("<article>").addClass("item").append($sub_sect_1, $sub_sect_2, $sub_sect_3);
     return $article;
@@ -57,9 +61,11 @@ $(document).ready(function () {
         url: "/favourites",
         data: each,
         success: (data1) => {
-          let favId = data1.id;
-          let favActive = data1.active;
-          $(".items-section").append(createItemElement(each, favId, favActive));
+          console.log(data1);
+          let favId = data1[0].id;
+          let favActive = data1[0].active;
+          let convoId = data1[1].id;
+          $(".items-section").append(createItemElement(each, favId, favActive, convoId));
         }});
     }
   };

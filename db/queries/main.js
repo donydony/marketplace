@@ -68,6 +68,7 @@ let filterData = function (pageNumber, name, min, max, boolean) {
   if (max) {
     parameters.push(`price <= ${realMax}`);
   }
+  console.log(parameters);
   if (parameters.length > 0) {
     queryString = queryString + "WHERE " + parameters.join(" AND ");
   }
