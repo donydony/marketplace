@@ -15,11 +15,11 @@ const {
 
 
 router.get('/', (req, res) => {
-  const user_name = req.session.user_name;
+  const userName = req.session.user_name;
 
   const templateVars = {
-    user: user_name
-  }
+    user: userName
+  };
   res.render('index', templateVars);
 });
 

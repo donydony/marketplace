@@ -6,8 +6,10 @@ socket.on('connect', () => {
   console.log(`You connected with id: ${socket.id}`);
 });
 
-const createMessageElement = function(divClass, text, user_pic) {
-  let $message = `<tr>
+const createMessageElement = function (divClass, text, user_pic) {
+  let $message;
+  if (divClass.includes('current')) {
+    $message = `<tr>
   <td>
     <div class="${divClass}">
         <span>${text}</span>
@@ -15,6 +17,16 @@ const createMessageElement = function(divClass, text, user_pic) {
     </div>
   </td>
 </tr>`;
+  } else {
+    $message = `<tr>
+  <td>
+    <div class="${divClass}">
+        <img class="messages-text-pic" src="${user_pic}" alt="Profile picture">
+        <span>${text}</span>
+    </div>
+  </td>
+</tr>`;
+  }
   return $message;
 };
 
@@ -39,6 +51,16 @@ socket.on('receive-message', message => {
 $(document).ready(function () {
   $("#messages-texts").scrollTop($("#messages-texts")[0].scrollHeight);
 
+  $('#new-message-text').on('input', function() {
+    const counter = 300 - this.value.length;
+    $("#tcounter")[0].value = counter;
+    if (counter >= 0) {
+      $("#tcounter")[0].style.color = '#545149';
+    } else {
+      $("#tcounter")[0].style.color = "red";
+    }
+  });
+
   $('#new-message').on('submit', function (subEvent) {
     subEvent.preventDefault();
     const msgValue = $('#new-message-text')[0].value;
@@ -55,9 +77,11 @@ $(document).ready(function () {
     } else {
       //POST message, then emit message
       const formData = $(this).serialize();
-      $.ajax('/messages/', { method: 'POST', data: formData })
+      $.ajax('/messages/' + $('#convo_id')[0].value, { method: 'POST', data: formData })
         .then((result) => {
           console.log('Successful POST emitting: ', result);
+          $('#new-message-text').val('');
+          $('#tcounter').val('300');
           socket.emit('send-message', result);
         });
     }

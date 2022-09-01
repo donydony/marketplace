@@ -7,20 +7,20 @@ const getUsers = () => {
     });
 };
 
-const findUserNameViaId = (userId) => {
-  const query = `SELECT username
+const findUserViaId = (user_id) => {
+  const query = `SELECT *
   FROM users
-  WHERE username = $1;
+  WHERE id = $1;
   `;
-  const queryParams = [userId];
+  const queryParams = [user_id];
   return db.query(query,queryParams).then(data => {
     //console.log('data.rows',data.rows);
     return data.rows;
   });
-}
+};
 
 const findUserNameExists = (userName) => {
-  const query = `SELECT username,password,id
+  const query = `SELECT *
   FROM users
   WHERE username = $1;
   `;
@@ -29,7 +29,7 @@ const findUserNameExists = (userName) => {
     //console.log('data.rows',data.rows);
     return data.rows;
   });
-}
+};
 
 const findUserId = (userName) => {
   const query = `
@@ -42,7 +42,7 @@ const findUserId = (userName) => {
   return db.query(query,queryParams).then(data => {
     return data.rows;
   });
-}
+};
 
 const insertNewUser = (userName, password, firstName, lastName, userPic, address, aboutMe) => {
   const query = `
@@ -62,7 +62,7 @@ const insertNewUser = (userName, password, firstName, lastName, userPic, address
   const queryParams = [userName, password, admin, firstName, lastName, userPic, address, aboutMe];
 
   return db.query(query,queryParams).then(data => {return data.rows});
-}
+};
 
 const updateUserDescription = (userName, description) => {
   const query = `
@@ -72,7 +72,7 @@ const updateUserDescription = (userName, description) => {
   `;
   const queryParams = [userName, description];
   return db.query(query,queryParams).then(data => {return data.rows});
-}
+};
 
 
-module.exports = { getUsers,findUserNameViaId, findUserNameExists,insertNewUser,findUserId,updateUserDescription};
+module.exports = { getUsers,findUserViaId, findUserNameExists,insertNewUser,findUserId,updateUserDescription};
