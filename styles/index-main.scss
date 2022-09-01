@@ -10,7 +10,7 @@ main {
     flex-direction: column;
     align-items: center;
     button {
-      margin-top: 110px;
+      margin-top: 11px;
       width: 60%;
       outline: none;
       background-color: $danger;
@@ -115,6 +115,9 @@ section.items-section {
   color: red;
 }
 
+.btn.btn-outline-secondary{
+  pointer-events: none;
+}
 @media screen and (min-width: 700px) {
 
 }

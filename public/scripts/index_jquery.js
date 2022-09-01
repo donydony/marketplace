@@ -40,7 +40,7 @@ $(document).ready(function () {
 
     const $button = $("<button>").attr("type", 'button')
     if (data.sold_status) {
-      $button.text("SOLD");
+      $button.text("SOLD").addClass("btn btn-outline-secondary");
     } else {
       $button.text("Message This Seller!").addClass("msg-redirect");
     }
