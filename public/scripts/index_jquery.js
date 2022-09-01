@@ -1,6 +1,7 @@
 $(document).ready(function () {
-  const createItemElement = function (data) {
+  const createItemElement = function (data, favid, favActive) {
 
+    const obj = {favourite_id : favid};
     const $item_img = $("<img>").attr("src", data.img_url);
     const $item_img_div = $("<div>").addClass("item_img").append($item_img);
     const $sub_sect_1 = $("<section>").addClass("sub-sect1").append($item_img_div);
@@ -12,23 +13,21 @@ $(document).ready(function () {
     const $item_description = $("<p>").text(data.item_description);
     const $sub_sect_2 = $("<section>").addClass("sub-sect2").append($item_title_wrapper, $item_description);
 
-    const $star = $("<i>").addClass("fa-solid fa-star").attr("id", data.favourites_id);
-    if(data.active === true) {
-      $star.addClass("toggle-color");
-    }
-    $star.on("click", function () {
-      $.ajax({
-        type: "PUT",
-        url: "/favourites",
-        data: data,
-        success: (data1) => {
-          $star.toggleClass("toggle-color");
-          if(!($star.attr("id"))){
-            $star.attr("id", data1[0].id)
-          }
-        }
-      });
-    });
+    const $star = $("<i>").addClass("fa-solid fa-star").attr("id", favid);
+    if(favActive === true) {
+        $star.addClass("toggle-color");
+      }
+
+      $star.on("click", function () {
+          $.ajax({
+              type: "PUT",
+              url: "/favourites",
+              data: obj,
+              success: () => {
+                  $star.toggleClass("toggle-color");
+                  }
+                });
+              });
 
     const $star_wrapper = $("<div>").text("Favourite this item").append($star);
 
@@ -46,11 +45,21 @@ $(document).ready(function () {
 
     const $article = $("<article>").addClass("item").append($sub_sect_1, $sub_sect_2, $sub_sect_3);
     return $article;
-  };
+  }
+  // });
+  // };
 
   const renderItems = function (items) {
     for (let each of items) {
-      $(".items-section").append(createItemElement(each));
+      $.ajax({
+        type: "POST",
+        url: "/favourites",
+        data: each,
+        success: (data1) => {
+          let favId = data1.id;
+          let favActive = data1.active;
+          $(".items-section").append(createItemElement(each, favId, favActive));
+        }});
     }
   };
 

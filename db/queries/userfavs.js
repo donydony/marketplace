@@ -26,31 +26,32 @@ let MarkSoldData = function (itemName) {
 };
 
 
-
-let updateUserFavData = function (user, item) {
-
-  console.log(user, item);
-return db.query(`SELECT COUNT(*) FROM favourites
-WHERE user_id = $1 AND item_id = $2`, [user, item])
+let checkFavData = function (user, item) {
+return db.query(`SELECT id, active FROM favourites
+  WHERE user_id = $1 AND item_id = $2`, [user, item])
   .then(data => {
-    if (data.rows[0].count === 1) {
+    if (data.rowCount === 0) {
+      return db.query(`INSERT INTO favourites (
+        user_id,
+        item_id,
+        active) VALUES ($1, $2, false) RETURNING *`, [user, item]).then(data => {
+          return data.rows[0];
+        })
+    }
+    return data.rows[0];
+      }
+  );
+};
+
+let updateUserFavData = function (favid) {
       return db.query(`UPDATE favourites
       SET active =  NOT active
       WHERE id = $1 RETURNING *`, [favid])
       .then(data => {
-        return data.rows;
+        return data.rows[0];
       })
-    }
-    let values = [user, item];
-    return db.query(`INSERT INTO favourites (
-      user_id,
-      item_id,
-      active) VALUES ($1, $2, true) RETURNING *`, values)
-      .then(data => {
-        return data.rows;
-      })
-    });
     };
 
 
-module.exports = {favData, MarkSoldData, updateUserFavData};
+
+module.exports = {favData, MarkSoldData, checkFavData, updateUserFavData};
