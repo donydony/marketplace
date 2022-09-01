@@ -77,10 +77,10 @@ $(document).ready(function () {
     } else {
       //POST message, then emit message
       const formData = $(this).serialize();
-      $.ajax('/messages/', { method: 'POST', data: formData })
+      $.ajax('/messages/' + $('#convo_id')[0].value, { method: 'POST', data: formData })
         .then((result) => {
           console.log('Successful POST emitting: ', result);
-          $('#new-message-text').empty();
+          $('#new-message-text').val('');
           socket.emit('send-message', result);
         });
     }
