@@ -63,11 +63,6 @@ $(document).ready(function () {
 
   loadItems();
 
-
-
-
-
-
 });
 
 
