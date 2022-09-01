@@ -9,6 +9,10 @@ const cookieSession = require('cookie-session');
 const PORT = process.env.PORT || 8080;
 const app = express();
 
+const io = require('socket.io')(3000, {
+  cors: { origin: "http://localhost:8080" }
+});
+
 app.set('view engine', 'ejs');
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
@@ -77,6 +81,13 @@ app.get('/', (req, res) => {
   res.render('index',templateVars);
 });
 
+
+io.on('connection', (socket) => {
+  console.log('a user has connected! id: ', socket.id);
+  socket.on('send-message', (message) => {
+    io.emit('receive-message', message);
+  });
+});
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

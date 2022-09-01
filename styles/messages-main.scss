@@ -6,25 +6,131 @@ main {
   .messages-section {
     @include flex($d: column, $i: center);
 
-    .messages-box {
+    .messages-item-title {
       margin-top: 110px;
+      width: 70%;
+      text-align: center;
+    }
+
+    .messages-box {
+      @include flex($d: column);
+      margin-top: 0px;
       height: 70vh;
       width: 70%;
       border: 3px solid black;
       border-radius: 25px;
+
+    }
+
+    .messages-header {
+      @include flex($i: center);
+      border-bottom: 2px solid black;
+      padding: 15px;
+      background-color: #F8F8F8;
+      border-top-left-radius: 25px;
+      border-top-right-radius: 25px;
+      box-shadow: 0px 3px #E0E0E0;
+      position: relative;
+      height: 100px;
+      left: 0;
+      top: 0;
+      width: 100%;
+
+      .user-section {
+        @include flex($d: row, $i: center);
+      }
+  
+      .messages-header-pic {
+        margin-left: 10px;
+        margin-right: 10px;
+        height: 60px;
+        border-radius: 100px;
+      }
+  
+      .messages-username {
+        width: max-content;
+      }
+    }
+
+    .messages-texts {
+      overflow-y: scroll;
+    }
+
+    .messages-texts-table {
+      width: 100%;
+    }
+
+    .messages-texts::-webkit-scrollbar {
+      width: 15px;
+    }
+
+    .messages-texts::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px #E0E0E0;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .messages-texts::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      -webkit-box-shadow: inset 0 0 6px #787878;
+    }
+
+    .messages-other-user {
+      @include flex($d: row, $i: center);
+      margin-left: 10px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      width: 60%;
+    }
+
+    .messages-current-user {
+      @include flex($d: row, $i: center, $c: flex-end);
+      margin-right: 10px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      float: right;
+      width: 60%;
+      text-align: right;
+    }
+
+    .messages-text-pic {
+      margin-left: 10px;
+      margin-right: 10px;
+      height: 25px;
+      border-radius: 25px;
+    }
+
+    #message-error {
+      color: red;
+      margin: 7px 0px;
     }
 
     .new-message-form {
       @include flex($c: center);
-      width: 70%;
+      width: 69%;
       height: 7vh;
-      margin-top: 1em;
-      border: 2px solid black;
+      border: none;
 
       .new-message {
         width: 85%;
         height: 100%;
-        margin-right: 0;
+        padding-right: 10px;
+        border-bottom-color: black;
+        border-bottom-width: 5px;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+      }
+
+      .new-message:focus {
+        outline: none;
+      }
+
+      .counter {
+        @include flex($d: row, $i: flex-end);
+        border-bottom-color: black;
+        border-bottom-width: 5px;
+        border-bottom-style: solid;
       }
 
       .submit {
@@ -34,7 +140,9 @@ main {
         margin: 0;
         font-size: large;
         background-color: royalblue;
-        color: white
+        color: white;
+        border-radius: 10px;
+        margin-left: 10px;
       }
     }
   }
