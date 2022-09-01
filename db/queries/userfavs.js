@@ -47,6 +47,28 @@ return db.query(`SELECT id, active FROM favourites
       }
   );
 };
+let checkConvoData = function (user, item, seller) {
+  if (!user) {
+    return new Promise ((res) =>{
+      res([null]);
+    })
+  }
+return db.query(`SELECT id FROM conversations
+  WHERE receiver_id = $1 AND item_id = $2`, [user, item])
+  .then(data => {
+    if (data.rowCount === 0 && user != seller) {
+      return db.query(`INSERT INTO conversations (
+        sender_id,
+        receiver_id,
+        item_id
+        ) VALUES ($1, $2, $3) RETURNING *`, [seller, user, item]).then(data => {
+          return data.rows[0];
+        })
+    }
+    return data.rows[0];
+      }
+  );
+};
 
 let updateUserFavData = function (favid) {
       return db.query(`UPDATE favourites
@@ -59,4 +81,4 @@ let updateUserFavData = function (favid) {
 
 
 
-module.exports = {favData, MarkSoldData, checkFavData, updateUserFavData};
+module.exports = {favData, MarkSoldData, checkFavData, checkConvoData, updateUserFavData};
