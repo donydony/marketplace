@@ -7,7 +7,14 @@ const {
 } = require("../db/queries/userfavs.js");
 
 router.get('/', (req, res) => {
-  res.render('user-fav');
+  const username = req.session.username;
+  const user_id = req.session.id;
+  const templateVars = {
+    user: username,
+    id: user_id
+  }
+
+  res.render('user-fav',templateVars);
 });
 
 
