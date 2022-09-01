@@ -81,6 +81,7 @@ $(document).ready(function () {
         .then((result) => {
           console.log('Successful POST emitting: ', result);
           $('#new-message-text').val('');
+          $('#tcounter').val('300');
           socket.emit('send-message', result);
         });
     }
