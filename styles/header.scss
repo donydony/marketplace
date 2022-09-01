@@ -2,14 +2,16 @@
 @import 'variables';
 
 header{
-
+  font-family: "Bungee", cursive;
   nav{
     @include flex($c: space-between, $i: center);
     height: 100px;
     top: 0;
     position:fixed;
-    background-color: royalblue;
     width:100%;
+
+    background-color: royalblue;
+
     div {
       img {
         width: 3em;
@@ -53,6 +55,7 @@ header{
               margin-right: 0.5em;
               border: 2px solid black;
               border-radius: $btn-round;
+              font-family: "Bungee", cursive;
           }
 
           button:hover {
@@ -92,6 +95,7 @@ header{
             height: 100%;
             border: 2px solid black;
             border-radius: $btn-round;
+            font-family: "Bungee", cursive;
           }
         }
       }
@@ -117,6 +121,6 @@ header{
   }
 
   #logged-a {
-    font-size: large;
+    font-size: medium;
   }
 }

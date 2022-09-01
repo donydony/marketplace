@@ -5,6 +5,7 @@
   @include flex($d: column, $c: center, $i: center);
   margin-top: 110px;
 
+
   h2 {
     font-size: 25px;
   }
@@ -56,10 +57,17 @@
   }
 
   .register-submit {
+    font-family: "Bungee", cursive;
     width: 100%;
     border: 2px solid black;
     border-radius: $btn-round;
     background-color: royalblue;
-    color: white
+    color: white;
+
+  }
+
+  .register-submit:hover {
+    background-color: gray;
+    color: black;
   }
 }

@@ -16,10 +16,18 @@
   }
 
   .login-submit {
+    font-family: "Bungee", cursive;
     width: 100%;
     border: 2px solid black;
     border-radius: $btn-round;
     background-color: royalblue;
-    color: white
+    color: white;
+
+  }
+
+  .login-submit:hover {
+
+    background-color: gray;
+    color: black;
   }
 }

@@ -21,7 +21,6 @@ const {
 
 router.get('/', (req, res) => {
   const user_name = req.session.user_name;
-  const aboutMe = req.body.aboutMe;
 
   if(!user_name){
     return res.status(400).send('Error must be logged in')

@@ -1,6 +1,11 @@
 @import 'variables';
 @import 'mixins';
 
+
+body {
+  font-family: "Bungee", cursive;
+}
+
 .your-items {
   @include flex($d: column, $c: center, $i: center);
   margin-top: 110px;
@@ -16,6 +21,11 @@
       background-color: red;
       color: white;
       margin-bottom: 70px;
+    }
+
+    button:hover {
+      background-color: white;
+      color: black;
     }
   }
 
@@ -39,7 +49,7 @@
           display: none;
 
           textarea {
-            width: 500px;
+            width: 100%;
             height: 10vh;
             border: 1px solid;
           }
@@ -50,13 +60,17 @@
             border-radius: $btn-round;
             background-color: greenyellow;
           }
+          button:hover {
+            background-color: white;
+            color: black;
+          }
 
         }
 
         .update-div {
           width: 500px;
           article {
-            width: 500px;
+            width: 100%;
             height: 10vh;
             border: 1px solid;
             text-align: center;
@@ -67,6 +81,11 @@
             border: 2px solid black;
             border-radius: $btn-round;
             background-color: greenyellow;
+          }
+
+          button:hover {
+            background-color: white;
+            color: black;
           }
         }
 
@@ -90,10 +109,19 @@
       }
 
     }
-
-
-
-
-
   }
+}
+
+
+
+@media screen and (max-width: 1000px){
+  #user-pic {
+    width: 100px;
+    height: 100px;
+  }
+
+  #update-form,#update-div{
+    width: 280px;
+  }
+  //shrink img and we are golden
 }
