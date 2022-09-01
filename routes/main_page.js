@@ -26,36 +26,47 @@ router.get('/', (req, res) => {
 //buttons
 router.post('/featured', (req, res) => {
   featuredData(1).then(data => {
-    return res.json(data);
+   // console.log("REQUEST SESSION", req.session);
+    const login_id = req.session.user_id
+    //console.log("FEATURE BUTTON POST", data);
+    return res.json([data, login_id]);
   })
 });
 
 
 router.post('/new', (req, res) => {
   newData(1).then(data => {
-    return res.json(data);
+        const login_id = req.session.user_id
+    //console.log("FEATURE BUTTON POST", data);
+    return res.json([data, login_id]);
   })
 });
 
 
 router.post('/price', (req, res) => {
   priceData(1).then(data => {
-    return res.json(data);
+        const login_id = req.session.user_id
+    //console.log("FEATURE BUTTON POST", data);
+    return res.json([data, login_id]);
   })
 });
 
 router.post('/pricedesc', (req, res) => {
   priceDataDesc(1).then(data => {
-    return res.json(data);
+        const login_id = req.session.user_id
+    //console.log("FEATURE BUTTON POST", data);
+    return res.json([data, login_id]);
   })
 });
 
 
 //filter
 router.post('/filter', (req, res) => {
-  let filter = req.body.filter_by;
-  filterData(1, filter[0], filter[1], filter[2], filter[3]).then(data => {
-    return res.json(data);
+  console.log(req.body);
+  filterData(1, req.body["filter-by-seller"], req.body["filter-by-min-price"], req.body["filter-by-max-price"], req.body["filter-by-sort"]).then(data => {
+        const login_id = req.session.user_id
+    //console.log("FEATURE BUTTON POST", data);
+    return res.json([data, login_id]);
   })
 });
 

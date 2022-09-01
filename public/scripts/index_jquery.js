@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  const createItemElement = function (data, favid, favActive, convoId) {
+  const createItemElement = function (data, favid, favActive, convoId, loginUserId) {
 
     const obj = {favourite_id : favid};
     const $item_img = $("<img>").attr("src", data.img_url);
@@ -39,40 +39,50 @@ $(document).ready(function () {
     const $seller_info_div = $("<div>").addClass("seller_info").append($user_img, $seller_name);
 
     const $button = $("<button>").css({"display" : "none"});
-    if(Number.isInteger(convoId)){
+    if(convoId && Number.isInteger(convoId)){
       if (data.sold_status) {
         $button.text("SOLD").attr("type", 'button').addClass("btn btn-outline-secondary");
       } else {
         $button.text("Message This Seller!").attr("type", 'submit').addClass("msg-redirect");
       }
-      $button.css({"display" : "inline"});
+      // console.log("index_jquery:", data);
+      // console.log("index_jquery session:", session);
+      let sellerID = data.user_id;
+      console.log("login user id:", loginUserId);
+      if( sellerID !== loginUserId){
+        $button.css({"display" : "inline"});
+      }
+
     }
-    const $form1 = $("<form>").attr("action", `/messages/${convoId}`).append($button);
+    const $form1 = $("<form>").append($button);
+    if (convoId && Number.isInteger(convoId)){
+      $form1.attr("action", `/messages/${convoId}`);
+    }
     const $sub_sect_3 = $("<section>").addClass("sub-sect3").append($star_wrapper, $seller_info_div, $form1);
 
     const $article = $("<article>").addClass("item").append($sub_sect_1, $sub_sect_2, $sub_sect_3);
     return $article;
   }
 
-  const renderItems = function (items) {
+  const renderItems = function (items, loginUserId) {
     for (let each of items) {
       $.ajax({
         type: "POST",
         url: "/favourites",
         data: each,
         success: (data1) => {
-          console.log(data1);
+          console.log("renderitems:", data1);
           let favId = data1[0].id;
           let favActive = data1[0].active;
-          let convoId = data1[1].id;
-          $(".items-section").append(createItemElement(each, favId, favActive, convoId));
+          let convoId = data1[1]?.id;
+          $(".items-section").append(createItemElement(each, favId, favActive, convoId, loginUserId));
         }});
     }
   };
 
   const loadItems = function () {
     $.post("/featured", function (data) {
-      renderItems(data);
+      renderItems(data[0], data[1]);
     });
   };
 
@@ -81,28 +91,28 @@ $(document).ready(function () {
   $("#sort-by-featured").click(()=> {
     $(".items-section").empty();
     $.post("/featured", function (data) {
-      renderItems(data);
+      renderItems(data[0], data[1]);
   })
 })
 
   $("#sort-by-newest").click(()=> {
     $(".items-section").empty();
     $.post("/new", function (data) {
-      renderItems(data);
+      renderItems(data[0], data[1]);
     });
   })
 
   $("#sort-by-lowest").click(()=> {
     $(".items-section").empty();
     $.post("/price", function (data) {
-      renderItems(data);
+      renderItems(data[0], data[1]);
     });
   })
 
   $("#sort-by-highest").click(()=> {
     $(".items-section").empty();
     $.post("/pricedesc", function (data) {
-      renderItems(data);
+      renderItems(data[0], data[1]);
     });
   });
 
@@ -110,8 +120,11 @@ $(document).ready(function () {
     event.preventDefault();
     $(".items-section").empty();
     const data = $(this).serialize();
+    console.log("Data:", data);
     $.post("/filter", data).then(data => {
-      renderItems(data);
+      renderItems(data[0], data[1]);
+    }).catch(err => {
+      console.error(err);
     })
   })
   $(".btn-success").click(function () {

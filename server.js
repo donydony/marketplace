@@ -31,7 +31,7 @@ app.use(
 app.use(express.static('public'));
 app.use(cookieSession({
   name: 'session',
-  keys: ['c8911ee4-2ab7-4bc3-9814-ecc6147ba261'],
+  keys: ['c8911ee4-2ab7-4bc3-9814-ecc6147ba261']
 }));
 
 

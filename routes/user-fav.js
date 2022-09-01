@@ -21,7 +21,10 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
   checkFavData(req.session.user_id, req.body.item_id).then(data => {
+    console.log("Data Line 24", data);
     checkConvoData(req.session.user_id, req.body.item_id, req.body.user_id).then(data1 => {
+      // console.log("user-fav.js Data: ", data);
+      // console.log("user-fav.js Data 1: ", data1);
       return res.json([data, data1]);
     })
   })

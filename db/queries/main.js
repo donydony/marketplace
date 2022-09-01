@@ -68,7 +68,6 @@ let filterData = function (pageNumber, name, min, max, boolean) {
   if (max) {
     parameters.push(`price <= ${realMax}`);
   }
-  console.log(parameters);
   if (parameters.length > 0) {
     queryString = queryString + "WHERE " + parameters.join(" AND ");
   }
@@ -77,9 +76,11 @@ let filterData = function (pageNumber, name, min, max, boolean) {
     queryString += " DESC";
   }
   queryString += ` LIMIT 10 OFFSET ${pageRange}`;
+  // console.log(queryString);
   return db
     .query(queryString)
     .then(data => {
+      // console.log("main.js LINE 83:", data.rows);
       return data.rows;
     })
 };

@@ -28,57 +28,66 @@ let MarkSoldData = function (itemName) {
 
 let checkFavData = function (user, item) {
   if (!user) {
-    return new Promise ((res) =>{
+    return new Promise((res) => {
       res([null, null]);
     })
   }
-return db.query(`SELECT id, active FROM favourites
+  return db.query(`SELECT id, active FROM favourites
   WHERE user_id = $1 AND item_id = $2`, [user, item])
-  .then(data => {
-    if (data.rowCount === 0) {
-      return db.query(`INSERT INTO favourites (
+    .then(data => {
+      if (data.rowCount === 0) {
+        return db.query(`INSERT INTO favourites (
         user_id,
         item_id,
         active) VALUES ($1, $2, false) RETURNING *`, [user, item]).then(data => {
           return data.rows[0];
         })
-    }
-    return data.rows[0];
       }
-  );
+      return data.rows[0];
+    }
+    );
 };
 let checkConvoData = function (user, item, seller) {
   if (!user) {
-    return new Promise ((res) =>{
+    return new Promise((res) => {
       res([null]);
     })
   }
-return db.query(`SELECT id FROM conversations
+  let sellerId = Number(seller);
+  let itemId = Number(item);
+  return db.query(`SELECT id FROM conversations
   WHERE receiver_id = $1 AND item_id = $2`, [user, item])
-  .then(data => {
-    if (data.rowCount === 0 && user != seller) {
-      return db.query(`INSERT INTO conversations (
+    .then(data => {
+      // console.log("Line 61:", data);
+      // console.log("seller:", sellerId);
+      // console.log("user:", user);
+      // console.log("item:", itemId);
+      if (data.rowCount === 0 && user !== sellerId) {
+        // console.log("userfavs.js line 66:");
+        return db.query(`INSERT INTO conversations (
         sender_id,
         receiver_id,
         item_id
-        ) VALUES ($1, $2, $3) RETURNING *`, [seller, user, item]).then(data => {
+        ) VALUES ($1, $2, $3) RETURNING *`, [sellerId, user, itemId]).then(data => {
+          // console.log("userfavs.js Line 72:", data.rows[0]);
           return data.rows[0];
         })
-    }
-    return data.rows[0];
       }
-  );
+      // console.log("userfavs.js Line 76:", data.rows[0]);
+      return data.rows[0];
+    }
+    );
 };
 
 let updateUserFavData = function (favid) {
-      return db.query(`UPDATE favourites
+  return db.query(`UPDATE favourites
       SET active =  NOT active
       WHERE id = $1 RETURNING *`, [favid])
-      .then(data => {
-        return data.rows[0];
-      })
-    };
+    .then(data => {
+      return data.rows[0];
+    })
+};
 
 
 
-module.exports = {favData, MarkSoldData, checkFavData, checkConvoData, updateUserFavData};
+module.exports = { favData, MarkSoldData, checkFavData, checkConvoData, updateUserFavData };
