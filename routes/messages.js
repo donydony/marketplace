@@ -18,7 +18,7 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
   messagesQueries.insertMessage(req.body.convo_id, req.body.sender_id, req.body.new_message).then(message => {
     console.log(message);
-    res.status(201).send(message[0].message);
+    res.status(201).json(message[0]);
   })
     .catch(err => {
       res

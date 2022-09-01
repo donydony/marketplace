@@ -42,7 +42,9 @@
   JS SCRIPTS
 ******************************************************************************-->
   <script src="/vendor/jquery-3.0.0.js"></script>
-  <script src="https://cdn.socket.io/4.5.0/socket.io.min.js" integrity="sha384-7EyYLQZgWBi67fBtVxw60/OWl1kjsfrPFcaU0pp0nAh+i8FD068QogUvg85Ewy1k" crossorigin="anonymous"></script>
+  <script src="https://cdn.socket.io/4.5.0/socket.io.min.js"
+    integrity="sha384-7EyYLQZgWBi67fBtVxw60/OWl1kjsfrPFcaU0pp0nAh+i8FD068QogUvg85Ewy1k"
+    crossorigin="anonymous"></script>
   <script defer src="/scripts/app.js"></script>
   <script defer type="text/javascript" src="/scripts/messages.js"></script>
 
@@ -68,42 +70,55 @@
               <%= allMessages[0].sender_pic %>
             <% } else { %>
               <%= allMessages[0].receiver_pic %>
-            <% } %>" alt="Profile picture">
+            <% } %>" alt="Profile picture" id="messages-header-pic">
             <label class="messages-username">
-              <% if (allMessages[0].sender_id === 1 && allMessages[0].isSender) { %>
+              <% if (allMessages[0].sender_id===1 && allMessages[0].isSender) { %>
                 <%= allMessages[0].sender_username %>
-              <% } else { %>
-                <%= allMessages[0].receiver_username %>
-              <% } %>
+                  <% } else { %>
+                    <%= allMessages[0].receiver_username %>
+                      <% } %>
             </label>
           </div>
         </section>
 
         <section class="messages-texts" id="messages-texts">
           <table class="messages-texts-table">
-            <% for (let msg of allMessages) { %>
-              <tr>
-                <td>
-                  <div class="<%= msg.sender_id === 1 ? 'messages-current-user' : 'messages-other-user'; %>">
-                    <% if ( msg.sender_id === 1) { %>
-                      <span><%= msg.message %></span>
-                      <img class="messages-text-pic" src="<%= msg.sender_id === 1 ? msg.sender_pic : msg.receiver_pic ; %>" alt="Profile picture">
-                    <% } else { %>
-                      <img class="messages-text-pic" src="<%= msg.sender_id === 1 ? msg.sender_pic : msg.receiver_pic ; %>" alt="Profile picture">
-                      <span><%= msg.message %></span>
-                    <% } %>
-                  </div>
-                </td>
-              </tr>
-            <% } %>
+            <tbody id="messages-texts-table">
+              <% for (let msg of allMessages) { %>
+                <tr>
+                  <td>
+                    <div class="<%= msg.sender_id === 1 ? 'messages-current-user' : 'messages-other-user'; %>">
+                      <% if ( msg.sender_id===1) { %>
+                        <span>
+                          <%= msg.message %>
+                        </span>
+                        <img class="messages-text-pic"
+                          src="<%= msg.sender_id === 1 ? msg.sender_pic : msg.receiver_pic ; %>" alt="Profile picture">
+                        <% } else { %>
+                          <img class="messages-text-pic"
+                            src="<%= msg.sender_id === 1 ? msg.sender_pic : msg.receiver_pic ; %>"
+                            alt="Profile picture">
+                          <span>
+                            <%= msg.message %>
+                          </span>
+                          <% } %>
+                    </div>
+                  </td>
+                </tr>
+                <% } %>
+            </tbody>
           </table>
         </section>
       </section>
       <section id="message-error"></section>
       <form class="new-message-form" method="post" action="/messages/" id="new-message">
-        <input name="convo_id" value="<%= convo_id %>" style="display: none;" />
-        <input name="sender_id" value="<%= user_id %>" style="display: none;" />
-        <input class="new-message" type="new_message" name="new_message" placeholder="Enter new message" id="new-message-text" />
+        <input name="convo_id" value="<%= convo_id %>" style="display: none;" id="convo_id" />
+        <input name="sender_id" value="<%= user_id %>" style="display: none;" id="user_id" />
+        <input name="used_pic"
+          value="<%= user_id === allMessages[0].convo_sender_id ? allMessages[0].sender_pic : allMessages[0].receiver_pic; %>"
+          style="display: none;" id="user_pic" />
+        <input class="new-message" type="new_message" name="new_message" placeholder="Enter new message"
+          id="new-message-text" />
         <output id="tcounter" name="counter" class="counter" for="tweet-text">300</output>
         <button class="submit btn btn-primary" type="submit">Send</button>
       </form>

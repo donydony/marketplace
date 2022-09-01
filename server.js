@@ -66,7 +66,9 @@ app.get('/', (req, res) => {
 
 io.on('connection', (socket) => {
   console.log('a user has connected! id: ', socket.id);
-
+  socket.on('send-message', (message) => {
+    io.emit('receive-message', message);
+  });
 });
 
 app.listen(PORT, () => {
