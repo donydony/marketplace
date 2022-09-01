@@ -27,6 +27,11 @@ let MarkSoldData = function (itemName) {
 
 
 let checkFavData = function (user, item) {
+  if (!user) {
+    return new Promise ((res) =>{
+      res([null, null]);
+    })
+  }
 return db.query(`SELECT id, active FROM favourites
   WHERE user_id = $1 AND item_id = $2`, [user, item])
   .then(data => {

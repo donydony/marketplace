@@ -12,13 +12,12 @@ router.get('/', (req, res) => {
 
 
 router.post('/', (req, res) => {
-  checkFavData(req.body.user_id, req.body.item_id).then(data => {
+  checkFavData(req.session.user_id, req.body.item_id).then(data => {
     return res.json(data);
   })
 });
 
 router.put('/', (req, res) => {
-  console.log(req.body.favourite_id);
   updateUserFavData(req.body.favourite_id).then(data => {
     return res.json(data);
   })

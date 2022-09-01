@@ -13,8 +13,10 @@ $(document).ready(function () {
     const $item_description = $("<p>").text(data.item_description);
     const $sub_sect_2 = $("<section>").addClass("sub-sect2").append($item_title_wrapper, $item_description);
 
-    const $star = $("<i>").addClass("fa-solid fa-star").attr("id", favid);
-    if(favActive === true) {
+    const $star = $("<i>").addClass("fa-solid fa-star");
+    if(favid !== null && favActive !== null){
+      $star.attr("id", favid);
+      if(favActive === true) {
         $star.addClass("toggle-color");
       }
 
@@ -23,11 +25,12 @@ $(document).ready(function () {
               type: "PUT",
               url: "/favourites",
               data: obj,
-              success: () => {
+              success: (data1) => {
                   $star.toggleClass("toggle-color");
                   }
                 });
               });
+    }
 
     const $star_wrapper = $("<div>").text("Favourite this item").append($star);
 
@@ -46,8 +49,6 @@ $(document).ready(function () {
     const $article = $("<article>").addClass("item").append($sub_sect_1, $sub_sect_2, $sub_sect_3);
     return $article;
   }
-  // });
-  // };
 
   const renderItems = function (items) {
     for (let each of items) {
