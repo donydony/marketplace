@@ -13,10 +13,10 @@
     @include flex($d: column,$c: center,$i: center);
 
     .headings{
-      display: flex;
+      @include flex($c: space-around);
 
-      .img-url {
-        @include flex($d: column,$i: flex-start);
+      .item-name, .img-url, .price {
+        @include flex($d: column,$i: center);
         padding: 0 5%;
         margin:0 1em;
       }
@@ -34,14 +34,11 @@
         }
       }
 
-      .price{
-        @include flex($d: column,$i: flex-start);
-        padding: 0 5%;
-        margin:0 1em;
-      }
+
     }
 
     .description {
+      text-align: center;
       width:70%;
       height: 50vh;
       border-radius: 15px;

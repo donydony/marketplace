@@ -19,6 +19,8 @@
 ****************************************************************************
   EXTERNAL STYLE SHEETS
 ******************************************************************************-->
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
   <!-- LAYOUT CSS CSS-->
   <link rel="stylesheet" href="/styles/layout.css" />
   <!-- MAIN CSS-->
@@ -37,6 +39,10 @@
 ******************************************************************************-->
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/app.js"></script>
+  <script defer src="/scripts/registerError.js"></script>
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+
 
   </head>
 <body>
@@ -48,31 +54,102 @@
 
     <section class="register-section">
       <h2 class="register-heading">Register</h2>
-      <form method="post" action="/register">
-        <div class="email-input">
-          <div >
-            <h5>New Email address</h5>
-            <input
-                  class="form-control"
-                  type="email"
-                  name="email"
-                  placeholder="Enter a new email"
-                  style="margin-bottom: 1em"
-            />
+
+      <form id="register-form" method="post" action="/register">
+
+        <h5>New user</h5>
+          <div class="userName-password">
+
+            <div >
+              <label class="error" id="error" ><i class="fa-solid fa-triangle-exclamation" ><span> HELLLOO</span></i> </label>
+              <label for="userName">New User</label>
+              <input
+                    class="form-control"
+                    type="text"
+                    name="userName"
+                    placeholder="Enter a user name"
+                    required="true"
+                    style="margin-bottom: 1em"
+              />
+            </div>
+
+            <div >
+              <label for="userName">New password</label>
+              <input
+                    class="form-control"
+                    type="password"
+                    name="password"
+                    placeholder="Enter a new password"
+                    required="true"
+                    style="margin-bottom: 1em"
+              />
+            </div>
+          </div>
+          <h5>Name</h5>
+          <div class="firstName-lastName">
+
+            <div >
+              <label for="firstName">First name</label>
+              <input
+                    class="form-control"
+                    type="text"
+                    name="firstName"
+                    placeholder="Enter a first name"
+                    required="true"
+                    style="margin-bottom: 1em"
+              />
+            </div>
+
+            <div >
+              <label for="lastName">Last name</label>
+              <input
+                    class="form-control"
+                    type="text"
+                    name="lastName"
+                    placeholder="Enter a surname"
+                    required="true"
+                    style="margin-bottom: 1em"
+              />
+            </div>
           </div>
 
-          <div >
-            <h5>Enter a new password</h5>
-            <input
-                  class="form-control"
-                  type="password"
-                  name="password"
-                  placeholder="Enter a new password"
-                  style="margin-bottom: 1em"
-            />
+          <section class="about">
+            <div class="profile-pic">
+              <h5>Profile picture</h5>
+              <input
+                      class="form-control"
+                      type="text"
+                      name="userPic"
+                      placeholder="Enter a url"
+                      required="true"
+                      style="margin-bottom: 1em"
+                />
+              </div>
+
+              <div class="address" >
+                <h5>Address</h5>
+                <input
+                        class="form-control"
+                        type="text"
+                        name="address"
+                        placeholder="Enter an address"
+                        required="true"
+                        style="margin-bottom: 1em"
+                  />
+              </div>
+
+
+          </section>
+
+          <div class="about-me">
+            <h5>About me</h5>
+            <textarea type="text" name="aboutMe" cols="0" rows="10" placeholder="Enter description"></textarea>
           </div>
+
+          </div>
+
           <button class="register-submit" type="submit">register</button>
-        </div>
+
       </form>
     </section>
 

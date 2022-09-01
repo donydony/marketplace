@@ -19,7 +19,7 @@ let maxUserID = function () {
 
 const addItems =  function(boolean, seller) {
   let title = faker.vehicle.model();
-  let imgUrl = faker.image.transport();
+  const imgUrl = faker.image.animals(400, 400, true);
   let price = Math.floor(Number(faker.finance.amount())*100);
   let type = faker.vehicle.type();
   let description = faker.lorem.lines();

@@ -5,6 +5,19 @@
   @include flex($d: column, $c: center, $i: center);
   margin-top: 110px;
 
+  .post-item {
+    border: 2px solid black;
+      border-radius: $btn-round;
+
+      form{
+        @include flex($d: column, $i: center);
+        button {
+          background-color: greenyellow;
+        }
+      }
+
+  }
+
   .profile {
     @include flex($c: space-between,$i: center);
     width: 60%;
@@ -23,7 +36,14 @@
         height: 10vh;
         border: 1px solid;
       }
+
+      button {
+        border: 2px solid black;
+        border-radius: $btn-round;
+        background-color: greenyellow;
+      }
     }
+
   }
 
   .listing {
@@ -32,16 +52,17 @@
     div {
       @include flex($c: center);
 
-      .delete {
+      .delete, .sold {
         border: 2px solid black;
         border-radius: $btn-round;
         background-color: red;
       }
-      .sold {
-        border: 2px solid black;
-        border-radius: $btn-round;
-        background-color: greenyellow;
-      }
+
     }
+
+
+
+
+
   }
 }

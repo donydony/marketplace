@@ -24,11 +24,13 @@ let maxItemID = function () {
 };
 
 const addFavs =  function(boolean, user, item) {
-  let values = [user, item];
+  let active = Math.random() < 0.5;
+  let values = [user, item, active];
   return pool
     .query(`INSERT INTO favourites (
       user_id,
-      item_id) VALUES ($1, $2) RETURNING *`, values, (err, res) => {
+      item_id,
+      active) VALUES ($1, $2, $3) RETURNING *`, values, (err, res) => {
         if (err) {
           return console.log(err.stack);
         }

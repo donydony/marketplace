@@ -13,11 +13,33 @@ const pool = new Pool ({
   database: process.env.DB_NAME
 });
 
-const addUser =  function(boolean) {
-  let username = faker.internet.userName();
+let isExistingUser = function (name) {
+  return pool
+    .query(`SELECT username FROM users`)
+    .then(data => {
+      let listNames = data.rows.map((element) => {
+        return element.username;
+      })
+      return listNames.includes(name);
+    })
+};
+ let findUniqueUser = function () {
+  return new Promise ((res, rej) => {
+    let username = faker.internet.userName();
+    res(isExistingUser(username).then((data) =>{
+      if (!data) {
+        return username;
+      } else {
+      return findUniqueUser();
+      }
+    }))
+  })
+};
+
+const addUser =  function(username, boolean) {
   let password = bcrypt.hashSync('password', salt);
   let admin = Math.random() < 0.5;
-  let user_pic = faker.internet.avatar();
+  let user_pic = faker.internet.avatar(400, 400, true);
   let first_name = faker.name.firstName();
   let last_name = faker.name.lastName();
   let address = faker.address.streetAddress();
@@ -45,8 +67,10 @@ const addUser =  function(boolean) {
 
 let addNUsers = function(times, boolean) {
   for (let i = 0; i < times; i ++){
-    addUser(boolean);
+    findUniqueUser().then(data => {
+       addUser(data, boolean);
+    })
   }
 };
 
-module.exports = {addNUsers};
+module.exports = {addNUsers,salt};

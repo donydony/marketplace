@@ -9,6 +9,12 @@
     font-size: 25px;
   }
 
+  .error{
+    display: none;
+    padding: 0 0.4em;
+    color: red;
+  }
+
   .login-submit {
     width: 100%;
     border: 2px solid black;
