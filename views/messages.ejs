@@ -62,7 +62,7 @@
   <main>
     <section class="messages-section">
       <h2 class="messages-item-title">
-        <%= allMessages[0].item_title %>
+        <%= item_title %>
       </h2>
       <section class="messages-box">
         <section class="messages-header">
@@ -70,18 +70,9 @@
             <a href="/inbox">
               <i class="fa-solid fa-circle-chevron-left"></i>
             </a>
-            <img class="messages-header-pic" src="
-            <% if (allMessages[0].sender_id === 1 && allMessages[0].isSender) { %>
-              <%= allMessages[0].sender_pic %>
-            <% } else { %>
-              <%= allMessages[0].receiver_pic %>
-            <% } %>" alt="Profile picture" id="messages-header-pic">
+            <img class="messages-header-pic" src="<%= receiver_user_pic %>" alt="Profile picture" id="messages-header-pic">
             <label class="messages-username">
-              <% if (allMessages[0].sender_id===1 && allMessages[0].isSender) { %>
-                <%= allMessages[0].sender_username %>
-                  <% } else { %>
-                    <%= allMessages[0].receiver_username %>
-                      <% } %>
+              <%= receiver_username %>
             </label>
           </div>
         </section>
@@ -92,16 +83,16 @@
               <% for (let msg of allMessages) { %>
                 <tr>
                   <td>
-                    <div class="<%= msg.sender_id === 1 ? 'messages-current-user' : 'messages-other-user'; %>">
-                      <% if ( msg.sender_id===1) { %>
+                    <div class="<%= msg.sender_id === user_id ? 'messages-current-user' : 'messages-other-user'; %>">
+                      <% if ( msg.sender_id === user_id) { %>
                         <span>
                           <%= msg.message %>
                         </span>
                         <img class="messages-text-pic"
-                          src="<%= msg.sender_id === 1 ? msg.sender_pic : msg.receiver_pic ; %>" alt="Profile picture">
+                          src="<%= user_pic %>" alt="Profile picture">
                         <% } else { %>
                           <img class="messages-text-pic"
-                            src="<%= msg.sender_id === 1 ? msg.sender_pic : msg.receiver_pic ; %>"
+                            src="<%= receiver_user_pic %>"
                             alt="Profile picture">
                           <span>
                             <%= msg.message %>
@@ -119,8 +110,8 @@
       <form class="new-message-form" method="post" action="/messages/" id="new-message">
         <input name="convo_id" value="<%= convo_id %>" style="display: none;" id="convo_id" />
         <input name="sender_id" value="<%= user_id %>" style="display: none;" id="user_id" />
-        <input name="used_pic"
-          value="<%= user_id === allMessages[0].convo_sender_id ? allMessages[0].sender_pic : allMessages[0].receiver_pic; %>"
+        <input name="user_pic"
+          value="<%= user_pic %>"
           style="display: none;" id="user_pic" />
         <input class="new-message" type="new_message" name="new_message" placeholder="Enter new message"
           id="new-message-text" />
