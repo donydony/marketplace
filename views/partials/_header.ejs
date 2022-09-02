@@ -1,15 +1,17 @@
 
 <header>
   <nav class="navbar navbar-dark">
-
-
+    
     <div id="logo">
-      <img src="docs/l.png" alt="L" class="d-inline-block">
+      <img src="/docs/l.png" alt="L" class="d-inline-block">
       <a class="navbar-brand" id="logo-text" href="/">OGO HERE</a>
       <a class="messages link" href="/messages"></a>
     </div>
-
-
+    
+    
+    <a href="/inbox">
+      <button class="inbox">INBOX</button>
+    </a>
       <% if(user){ %>
     <div class="user-div">
       <form class="user-name" method="POST" action="/logout">

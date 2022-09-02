@@ -59,7 +59,7 @@ const insertNewUser = (userName, password, firstName, lastName, userPic, address
   RETURNING *`;
 
   const admin = false;
-  const queryParams = [userName, password, admin, firstName, lastName, userPic, address, aboutMe];
+  const queryParams = [userName, password, admin, userPic, firstName, lastName, address, aboutMe];
 
   return db.query(query,queryParams).then(data => {return data.rows});
 };
