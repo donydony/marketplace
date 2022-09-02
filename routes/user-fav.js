@@ -4,7 +4,8 @@ const router  = express.Router();
 const {
   checkFavData,
   checkConvoData,
-  updateUserFavData
+  updateUserFavData,
+  favouritedData
 } = require("../db/queries/userfavs.js");
 
 router.get('/', (req, res) => {
@@ -14,7 +15,6 @@ router.get('/', (req, res) => {
     user: username,
     id: user_id
   }
-
   res.render('user-fav',templateVars);
 });
 
@@ -33,6 +33,14 @@ router.post('/', (req, res) => {
 router.put('/', (req, res) => {
   updateUserFavData(req.body.favourite_id).then(data => {
     return res.json(data);
+  })
+});
+
+router.post('/items', (req, res) => {
+  const login_id = req.session.user_id;
+  favouritedData(login_id).then(data => {
+    //console.log("FEATURE BUTTON POST", data);
+    return res.json([data, login_id]);
   })
 });
 

@@ -88,6 +88,28 @@ let updateUserFavData = function (favid) {
     })
 };
 
+let favouritedData = function (user) {
+  return db.query(`
+    SELECT item_id
+    FROM favourites
+    WHERE active = true AND user_id = $1`, [user])
+    .then (data => {
+      let x = [];
+      data.rows.forEach((element) => {
+        x.push(element.item_id);
+      })
+      let y = x.join(" OR items.id = ");
+      let queryString = "SELECT users.id AS user_id, items.id as item_id, sold_status, img_url, price, title, items.description AS item_description, users.user_pic, users.username FROM items JOIN users ON items.seller_id = users.id WHERE items.id = "
+      queryString = queryString + y + " LIMIT 10";
+    return db
+      .query(queryString)
+      .then(data => {
+        return data.rows;
+      })
+
+  })
+};
 
 
-module.exports = { favData, MarkSoldData, checkFavData, checkConvoData, updateUserFavData };
+
+module.exports = { favData, MarkSoldData, checkFavData, checkConvoData, updateUserFavData, favouritedData };
