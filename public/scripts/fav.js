@@ -27,21 +27,21 @@ $(document).ready(function () {
     });
     console.log(data);
     const $button3 = $("<button>").attr("type", 'submit').addClass("sold");
-    $button3.on("click", function (event) {
-      event.preventDefault();
-      $.ajax({
-        type: "PUT",
-        url: "/user/fav/sold",
-        data: data,
-        success: (data) => {
-          window.location.href='/user';
-        }
+    if (data.sold_status) {
+      $button3.text("SOLD").attr("type", 'button').addClass("btn btn-outline-secondary");
+    } else {
+      $button3.text("Message This Seller!").attr("type", 'submit').addClass("msg-redirect");
+      $button3.on("click", function (event) {
+        event.preventDefault();
+        $.ajax({
+          type: "PUT",
+          url: "/user/fav/sold",
+          data: data,
+          success: (data) => {
+            window.location.href='/user';
+          }
+        });
       });
-    });
-    if (data.sold_status === true){
-      $button3.text("Sold");
-    }else{
-      $button3.text("Mark As Sold");
     }
     const $sub_sect_3 = $("<section>").addClass("sub-sect3").append($button2, $button3);
 
