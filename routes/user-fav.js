@@ -7,16 +7,16 @@ const {
 } = require("../db/queries/userfavs.js");
 
 router.get('/', (req, res) => {
-  const username = req.session.username;
-  const user_id = req.session.id;
+  console.log(req.body)
+  const username = req.session.user_name;
+  const user_id = req.session.user_id;
   const templateVars = {
     user: username,
     id: user_id
   }
 
-  res.render('user-fav',templateVars);
+  res.render('favourites',templateVars);
 });
-
 
 router.post('/', (req, res) => {
   checkFavData(req.session.user_id, req.body.item_id).then(data => {

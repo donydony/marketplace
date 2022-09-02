@@ -47,7 +47,7 @@ const inboxRoutes = require('./routes/inbox');
 const mainRoutes = require('./routes/main_page');
 const { Template } = require('ejs');
 const logoutRoutes = require('./routes/logout');
-const userFavRoutes = require('./routes/user-fav');
+const userFavRoutes = require('./routes/favourites');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
