@@ -8,9 +8,9 @@ $(document).ready(function () {
 
 
     const $item_title = $("<span>").text(data.title)
-    const $price = $("<span>").text('$' + (data.price / 100)).attr({id : price});
-    const $item_title_wrapper = $("<div>").append($item_title, $price).attr({id : item-title-wrapper});
-    const $item_description = $("<p>").text(data.item_description).attr({id : item-descript});
+    const $price = $("<span>").text('$' + (data.price / 100)).attr("id" , "price");
+    const $item_title_wrapper = $("<div>").append($item_title, $price).attr("id", "item-title-wrapper");
+    const $item_description = $("<p>").text(data.item_description).attr("id" , "item-descript");
     const $sub_sect_2 = $("<section>").addClass("sub-sect2").append($item_title_wrapper, $item_description);
 
     const $star = $("<i>").addClass("fa-solid fa-star");
