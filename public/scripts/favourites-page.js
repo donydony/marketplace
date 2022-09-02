@@ -2,19 +2,20 @@ $(document).ready(function () {
   const createItemElement = function (data, favid, favActive, convoId, loginUserId) {
 
     const obj = {favourite_id : favid};
-    const $item_img = $("<img>").attr("src", data.img_url);
+    const $item_img = $("<img>").attr("src", data.img_url).addClass("favourite-img");
     const $item_img_div = $("<div>").addClass("item_img").append($item_img);
     const $sub_sect_1 = $("<section>").addClass("sub-sect1").append($item_img_div);
 
 
-    const $item_title = $("<span>").text(data.title);
-    const $price = $("<span>").text('$' + (data.price / 100));
-    const $item_title_wrapper = $("<div>").append($item_title, $price);
+    const $item_title = $("<h2>").text(data.title);
+    const $line_break = $('<br>');
+    const $price = $("<span>").text('$' + (data.price / 100)).addClass("favourite-price");
+    const $item_title_wrapper = $("<div>").append($item_title, $line_break, $price).addClass("favourite-title");
     const $item_description = $("<p>").text(data.item_description);
     const $sub_sect_2 = $("<section>").addClass("sub-sect2").append($item_title_wrapper, $item_description);
 
 
-    const $user_img = $("<img>").attr("src", data.user_pic);
+    const $user_img = $("<img>").attr("src", data.user_pic).addClass("favourite-user-pic");
     const $seller_name = $("<h5>").text(data.username);
     const $seller_info_div = $("<div>").addClass("seller_info").append($user_img, $seller_name);
 
