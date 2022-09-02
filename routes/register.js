@@ -21,7 +21,7 @@ const user_name = req.session.user_name;
  * /REGISTER ROUTE for registering a new user
 *****************************/
 router.post('/', (req, res) => {
-  //console.log(req.body);
+  console.log(req.body);
   const userName = req.body.userName;
   const password = req.body.password;
   const hashedPassword = bcrypt.hashSync(password,salt);
@@ -41,9 +41,9 @@ router.post('/', (req, res) => {
       userQueries.insertNewUser(
         userName,
         hashedPassword,
+        userPic,
         firstName,
         lastName,
-        userPic,
         address,
         aboutMe
         ).then(result => {
