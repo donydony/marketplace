@@ -13,31 +13,6 @@ $(document).ready(function () {
     const $item_description = $("<p>").text(data.item_description);
     const $sub_sect_2 = $("<section>").addClass("sub-sect2").append($item_title_wrapper, $item_description);
 
-    const $star = $("<i>").addClass("fa-solid fa-star");
-    if(favid !== null && favActive !== null){
-      $star.attr("id", favid);
-      if(favActive === true) {
-        $star.addClass("toggle-color");
-      }
-
-      $star.on("click", function () {
-          $.ajax({
-              type: "PUT",
-              url: "/favourites",
-              data: obj,
-              success: (data1) => {
-                  $star.toggleClass("toggle-color");
-                  }
-                });
-              });
-    }
-
-    const $star_wrapper = $("<div>")
-    if (!loginUserId){
-      $star_wrapper.text("Login to Save");
-    } else {
-      $star_wrapper.text("Favourite this item").append($star);
-    }
 
     const $user_img = $("<img>").attr("src", data.user_pic);
     const $seller_name = $("<h5>").text(data.username);
@@ -63,7 +38,7 @@ $(document).ready(function () {
     if (convoId && Number.isInteger(convoId)){
       $form1.attr("action", `/messages/${convoId}`);
     }
-    const $sub_sect_3 = $("<section>").addClass("sub-sect3").append($star_wrapper, $seller_info_div, $form1);
+    const $sub_sect_3 = $("<section>").addClass("sub-sect3").append($seller_info_div, $form1);
 
     const $article = $("<article>").addClass("item").append($sub_sect_1, $sub_sect_2, $sub_sect_3);
     return $article;
