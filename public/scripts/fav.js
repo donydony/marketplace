@@ -30,7 +30,7 @@ $(document).ready(function () {
     if (data.sold_status) {
       $button3.text("SOLD").attr("type", 'button').addClass("btn btn-outline-secondary");
     } else {
-      $button3.text("Message This Seller!").attr("type", 'submit').addClass("msg-redirect");
+      $button3.text("Mark as Sold").attr("type", 'submit').addClass("msg-redirect");
       $button3.on("click", function (event) {
         event.preventDefault();
         $.ajax({
