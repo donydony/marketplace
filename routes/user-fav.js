@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
     id: user_id
   }
 
-  res.render('favourites',templateVars);
+  res.render('user-fav',templateVars);
 });
 
 router.post('/', (req, res) => {
