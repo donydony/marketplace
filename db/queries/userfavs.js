@@ -4,7 +4,7 @@ const db = require('../connection');
 
 let favData = function (userName) {
   return db
-    .query(`SELECT items.id as item_id, img_url, items.sold_status, price, title, items.description AS item_description
+    .query(`SELECT items.id as item_id, img_url, items.sold_status, price, title, items.description AS item_description, users.id AS user_id
     FROM items
     JOIN users ON items.seller_id = users.id
     WHERE users.username = $1
@@ -52,10 +52,11 @@ let checkConvoData = function (user, item, seller) {
       res([null]);
     })
   }
+  let userId = Number(user);
   let sellerId = Number(seller);
   let itemId = Number(item);
   return db.query(`SELECT id FROM conversations
-  WHERE receiver_id = $1 AND item_id = $2`, [user, item])
+  WHERE receiver_id = $1 AND item_id = $2`, [userId, itemId])
     .then(data => {
       // console.log("Line 61:", data);
       // console.log("seller:", sellerId);
@@ -67,7 +68,7 @@ let checkConvoData = function (user, item, seller) {
         sender_id,
         receiver_id,
         item_id
-        ) VALUES ($1, $2, $3) RETURNING *`, [sellerId, user, itemId]).then(data => {
+        ) VALUES ($1, $2, $3) RETURNING *`, [sellerId, userId, itemId]).then(data => {
           // console.log("userfavs.js Line 72:", data.rows[0]);
           return data.rows[0];
         })
@@ -109,6 +110,24 @@ let favouritedData = function (user) {
   })
 };
 
+const getConvoId = (user_id, item_id) => {
+  return db.query(
+    `SELECT *
+    FROM conversations
+    WHERE (receiver_id = $1) AND item_id = $2;`, [user_id, item_id])
+    .then(data => {
+      return data.rows;
+    });
+};
 
+const getConvoId2 = (user_id, item_id) => {
+  return db.query(
+    `SELECT id
+    FROM conversations
+    WHERE (sender_id = $1) AND item_id = $2;`, [user_id, item_id])
+    .then(data => {
+      return data.rows[0];
+    });
+};
 
-module.exports = { favData, MarkSoldData, checkFavData, checkConvoData, updateUserFavData, favouritedData };
+module.exports = { favData, MarkSoldData, checkFavData, checkConvoData, updateUserFavData, favouritedData, getConvoId2 };

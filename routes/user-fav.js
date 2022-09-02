@@ -9,8 +9,10 @@ const {
 } = require("../db/queries/userfavs.js");
 
 router.get('/', (req, res) => {
+
+  console.log(req.body)
   const username = req.session.user_name;
-  const user_id = req.session.id;
+  const user_id = req.session.user_id;
   const templateVars = {
     user: username,
     id: user_id
@@ -19,13 +21,10 @@ router.get('/', (req, res) => {
   return;
 });
 
-
 router.post('/', (req, res) => {
+  console.log(req.session.user_id, req.body.item_id, req.body.user_id)
   checkFavData(req.session.user_id, req.body.item_id).then(data => {
-    console.log("Data Line 24", data);
     checkConvoData(req.session.user_id, req.body.item_id, req.body.user_id).then(data1 => {
-      // console.log("user-fav.js Data: ", data);
-      // console.log("user-fav.js Data 1: ", data1);
       return res.json([data, data1]);
     })
   })

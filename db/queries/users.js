@@ -69,6 +69,7 @@ const updateUserDescription = (userName, description) => {
   UPDATE users
   SET description = $2
   WHERE username = $1
+  RETURNING *
   `;
   const queryParams = [userName, description];
   return db.query(query,queryParams).then(data => {return data.rows});

@@ -21,9 +21,11 @@ router.post('/', (req,res) => {
   const user_name = req.session.user_name;
   const itemName = req.body.itemName;
   const imgUrl = req.body.imgUrl;
-  const price =  req.body.price;
+  const price  =  req.body.price * 100;
   const type =  req.body.type;
   const description =  req.body.description;
+
+  //if(typeof price )
   //console.log(req);
 
   userQueries.findUserId(user_name).then(result => {
@@ -43,8 +45,6 @@ router.post('/', (req,res) => {
     res.redirect('/user');
   })
   });
-
-
 
   /**REDIRECT TO USER PAGE */
 });

@@ -5,6 +5,7 @@ const itemsQueries = require('../db/queries/items');
 const router = express.Router();
 
 router.get('/:id', (req, res) => {
+
   //current user's info:
   const username = req.session.user_name;
   const user_id = req.session.user_id;
@@ -38,6 +39,7 @@ router.get('/:id', (req, res) => {
       .status(500)
       .json({ error: err.message });
   });
+
 });
 
 router.post('/:id', (req, res) => {

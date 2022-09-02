@@ -13,8 +13,15 @@
     EXTERNAL RESOURCES
   ******************************************************************************-->
 
-<!-- FONT AWESOME LINK -->
+  <!-- FONT AWESOME LINK -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- google font import -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital@0;1&display=swap"
+    rel="stylesheet">
 
 <!--
 ****************************************************************************
@@ -39,7 +46,7 @@
   JS SCRIPTS
 ******************************************************************************-->
   <script src="/vendor/jquery-3.0.0.js"></script>
-  <script defer src="/scripts/app.js"></script>
+  <script defer src="/scripts/user.js"></script>
   <!-- Bootstrap -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 
@@ -56,19 +63,25 @@
     <a class="post-item" href="/post-item">
       <button>POST A NEW ITEM</button>
       </a>
+
     <section class="profile">
-      <img src="" alt="">
+      <img id="user-pic" src=<%= userPic %> alt="profile pic">
       <div>
-        <h5>Joined: (TIMESTAMP)</h5>
-        <article class="about-me"></article>
-        <button>Update about me </button>
-        <form method="post" action="/users">
-          <textarea name="aboutME" id="about-me" cols="30" rows="10"></textarea>
-          <button>Update</button>
-        </form>
+        <div class="about">
+          <h5>About Me</h5>
+          <form id="update-form" class="update-form" method="post" action="/user/update">
+            <textarea id="aboutME-text" class="aboutME-text" name="aboutMe" id="about-me" cols="30" rows="10"></textarea>
+            <button>Update</button>
+          </form>
+
+          <div id="update-div" class="update-div">
+            <article class="about-me"><%= description %></article>
+            <button class="update">Update about me </button>
+          </div>
+
+        </div>
       </div>
     </section>
-
 
       <article class="listing">
       </article>
