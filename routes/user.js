@@ -97,7 +97,6 @@ router.post("/abc", (req, res) => {
   let sellerId = req.body.user_id;
   let data1 = [sellerId, itemId];
   getConvoId2(sellerId, itemId).then(data => {
-    console.log("Hello I'm not gay", data);
     return res.send(data);
   })
   // MarkSoldData(req.body.item_id).then(data => {

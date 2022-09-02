@@ -56,6 +56,7 @@ $(document).ready(function () {
         url: "/user/abc",
         data: data,
         success: (data) => {
+          if(data !== '')
           window.location.href=`/messages/${data.id}`;
         }
       });

@@ -122,7 +122,7 @@ const getConvoId = (user_id, item_id) => {
 
 const getConvoId2 = (user_id, item_id) => {
   return db.query(
-    `SELECT id
+    `SELECT id, receiver_id
     FROM conversations
     WHERE (sender_id = $1) AND item_id = $2;`, [user_id, item_id])
     .then(data => {

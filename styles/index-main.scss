@@ -121,6 +121,19 @@ section.items-section {
 #filter-by-seller{
   font-family: 'Courier New', Courier, monospace;
 }
+
+#item-descript {
+  font-family: 'Source Sans Pro', sans-serif;
+  width: 85%;
+}
+
+#item-title-wrapper {
+  @include flex($d: column);
+}
+
+#price{
+  font-family: 'Source Sans Pro', sans-serif;
+}
 @media screen and (min-width: 700px) {
 
 }
