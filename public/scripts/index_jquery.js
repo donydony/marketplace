@@ -32,7 +32,12 @@ $(document).ready(function () {
               });
     }
 
-    const $star_wrapper = $("<div>").text("Favourite this item").append($star);
+    const $star_wrapper = $("<div>")
+    if (!loginUserId){
+      $star_wrapper.text("Login to Save");
+    } else {
+      $star_wrapper.text("Favourite this item").append($star);
+    }
 
     const $user_img = $("<img>").attr("src", data.user_pic);
     const $seller_name = $("<h5>").text(data.username);
