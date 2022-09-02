@@ -16,6 +16,7 @@ router.get('/', (req, res) => {
     id: user_id
   }
   res.render('user-fav',templateVars);
+  return;
 });
 
 
