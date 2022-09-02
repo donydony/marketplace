@@ -110,15 +110,6 @@ let favouritedData = function (user) {
   })
 };
 
-const getConvoId = (user_id, item_id) => {
-  return db.query(
-    `SELECT *
-    FROM conversations
-    WHERE (receiver_id = $1) AND item_id = $2;`, [user_id, item_id])
-    .then(data => {
-      return data.rows;
-    });
-};
 
 const getConvoId2 = (user_id, item_id) => {
   return db.query(

@@ -95,7 +95,6 @@ router.post("/abc", (req, res) => {
   //console.log(req.body)
   let itemId = req.body.item_id;
   let sellerId = req.body.user_id;
-  let data1 = [sellerId, itemId];
   getConvoId2(sellerId, itemId).then(data => {
     return res.send(data);
   })
