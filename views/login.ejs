@@ -52,46 +52,77 @@
 
   </head>
 <body>
-  <header>
+  <!-- <header>
     <%- include('./partials/_header.ejs'); %>
-  </header>
+  </header> -->
 
   <main>
 
     <section class="login-section">
       <h2 class="login-heading">The Market Place</h2>
-      <p>Sign in to The Market Place or create an account</p>
+      <% if(false) {%>
+        <p>Sign in to The Market Place or <span><a href="">create an account</a></span> </p>
+      <% } else { %>
+        <h5>Welcome</h5>
+        <p>themarkteplace@gmail.com <span><a href="">Change</a></span> </p>
+      <% } %>
       <label class="error" id="error" ><i class="fa-solid fa-triangle-exclamation" ><span> </span></i> </label>
 
-      <form method="post" action="/login" id="login-form">
+      <form method="post" action="/login" class="login-form" id="login-form">
         <div class="email-input">
-          <div >
+
+          <% if (true)  {%>
+
             <input
                   id="user-name-input"
-                  class="form-control"
+                  class=""
                   type="text"
                   name="uname"
-                  placeholder="Enter your email or username"
+                  placeholder="   Enter your email or username"
                   required=true
                   style="margin-bottom: 1em"
             />
-          </div>
 
-          <div >
+          <% } else { %>
+
             <input
                   id="password-input"
-                  class="form-control"
+                  class=""
                   type="password"
                   name="password"
                   placeholder="Password"
                   required=true
                   style="margin-bottom: 1em"
             />
-          </div>
 
-          <button class="login-submit" type="submit">Login</button>
+          <% } %>
+          <button class="login-continue" type="submit">Continue</button>
         </div>
       </form>
+      <footer>
+        <select>
+          <option value="0">English (Canada):</option>
+          <option value="1">Audi</option>
+          <option value="2">BMW</option>
+          <option value="3">Citroen</option>
+          <option value="4">Ford</option>
+          <option value="5">Honda</option>
+          <option value="6">Jaguar</option>
+          <option value="7">Land Rover</option>
+          <option value="8">Mercedes</option>
+          <option value="9">Mini</option>
+          <option value="10">Nissan</option>
+          <option value="11">Toyota</option>
+          <option value="12">Volvo</option>
+        </select>
+        <div>
+          <a href="">Help</a>
+          <a href="">Privacy</a>
+          <a href="">Terms</a>
+        </div>
+
+      </footer>
+
     </section>
 
   </main>
