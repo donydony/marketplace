@@ -4,9 +4,11 @@
 .login-section {
   @include flex($d: column, $c: center, $i: center);
   margin-top: 110px;
+  font-family: $the-font;
 
   h2 {
     font-size: 25px;
+    font-family: $the-font;
   }
 
   .error{
@@ -16,7 +18,6 @@
   }
 
   .login-submit {
-    font-family: "Bungee", cursive;
     width: 100%;
     border: 2px solid black;
     border-radius: $btn-round;

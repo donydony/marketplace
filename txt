@@ -1,0 +1,5 @@
+ id | host_id |         event_time         |                location                 |       lat        |       lng        | price | spots | remaining_spots |                                                    description                                                     |                  photo                  |         createdAt          |  event_name
+----+---------+----------------------------+-----------------------------------------+------------------+------------------+-------+-------+-----------------+--------------------------------------------------------------------------------------------------------------------+-----------------------------------------+----------------------------+--------------
+  1 |       9 | 2022-10-13 01:55:11.819+00 | 662 King St W #101, Toronto, ON M5V 1M7 | 43.6443380189995 | -79.402161286259 |   949 |    27 |                 | Andy shoes are designed to keeping in mind durability as well as trends, the most stylish range of shoes & sandals | https://loremflickr.com/640/480/animals | 2022-10-07 04:59:40.381+00 | Tucuxi event
+(1 row)
+
