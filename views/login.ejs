@@ -60,18 +60,30 @@
 
     <section class="login-section">
       <h2 class="login-heading">The Market Place</h2>
-      <% if(false) {%>
-        <p>Sign in to The Market Place or <span><a href="">create an account</a></span> </p>
-      <% } else { %>
+      <% if(user) {%>
         <h5>Welcome</h5>
-        <p>themarkteplace@gmail.com <span><a href="">Change</a></span> </p>
+        <p>themarkteplace@gmail.com <span><a href="/login">Change</a></span> </p>
+      <% } else { %>
+        <p>Sign in to The Market Place or <span><a href="/register">create an account</a></span> </p>
       <% } %>
       <label class="error" id="error" ><i class="fa-solid fa-triangle-exclamation" ><span> </span></i> </label>
 
       <form method="post" action="/login" class="login-form" id="login-form">
         <div class="email-input">
 
-          <% if (true)  {%>
+          <% if (user)  {%>
+          <input
+                id="password-input"
+                class=""
+                type="password"
+                name="password"
+                placeholder="Password"
+                required=true
+                style="margin-bottom: 1em"
+          />
+
+          <% } else { %>
+
 
             <input
                   id="user-name-input"
@@ -79,18 +91,6 @@
                   type="text"
                   name="uname"
                   placeholder="   Enter your email or username"
-                  required=true
-                  style="margin-bottom: 1em"
-            />
-
-          <% } else { %>
-
-            <input
-                  id="password-input"
-                  class=""
-                  type="password"
-                  name="password"
-                  placeholder="Password"
                   required=true
                   style="margin-bottom: 1em"
             />
