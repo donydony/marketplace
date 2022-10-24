@@ -21,8 +21,6 @@ router.get('/', (req, res) => {
     }
     res.render('login', templateVars);
 
-
-
 });
 
 /*****************************
@@ -45,6 +43,7 @@ router.post('/', (req,res) => {
       res.status(403).send(' Wrong user name or password');
       return;
     }else {
+
       if(bcrypt.compareSync(password, dbUser.password)) {
         req.session.user_name = dbUser.username;
         req.session.user_id = dbUser.id;
