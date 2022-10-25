@@ -1,0 +1,7 @@
+Current implementation of login does not work requires password
+
+OPTION ONE MAKE TWO ROUTES
+
+OPTION TWO:
+
+-have the front end communicate with back end, if backend finds user name hide the username messages and form and display the new one.
